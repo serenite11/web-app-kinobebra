@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,500&display=swap');
+
+*{
+    font-family: 'Montserrat', sans-serif;
+}
+
+body{
+    overflow-y: scroll!important;
+}
+
+header{
+    box-shadow: none!important;
+}
+.header{
+    padding: 0 !important;
+}
+
+.navbar{
+    position:relative!important;
+    /*z-index: 300!important;*/
+}
+
+.wrapper{
+    flex: 1 0 auto;
+}
+
+.fff{
+    display: block;
+    flex-grow: 1;
+    font-size: 24px;
+}
+
+.fff a{
+    margin-left: 25px;
+    text-decoration: none;
+}
+
+.sideMenu{
+    /*position:relative;*/
+    z-index: 500;
+    background-color: green;
+}
+
+.active {
+    color:white;
+}
+
+.inactive{
+    color:gray;
+}
+
+@media (max-width: 900px){
+    .fff a{
+        display: none;
+    }
+}
+
+.slick-track .slick-active > div{
+    display: flex;
+}
+
+
+@media (min-width: 1121px) {
+    /* CSS для первого и четвертого элемента класса stick-active */
+    .slick-track .slick-slide:nth-child(4n+1) > div{
+        justify-content: start;
+    }
+
+    .slick-track .slick-slide:nth-child(4n+4) > div{
+        justify-content: end;
+    }
+
+    /* CSS для второго и третьего элементов класса stick-active */
+    .slick-track .slick-slide:nth-child(4n+2) > div,
+    .slick-track .slick-slide:nth-child(4n+3) > div {
+        justify-content: center;
+    }
+}
+
+.slick-slider{
+    margin-bottom: 25px;
+}
+
+
+
+
+.slick-dots li.slick-active button:before{
+    color: white;
+}
+
+.slick-track .slick-slide > div{
+    transition: 0.5ms all ease-in-out;
+}
+
+@media (max-width: 1120px) and (min-width: 801px){
+    /* CSS для первого и четвертого элемента класса stick-active */
+    .slick-track .slick-slide:nth-child(3n+1) > div{
+        justify-content: start;
+    }
+
+    .slick-track .slick-slide:nth-child(3n+3) > div{
+        justify-content: end;
+    }
+
+    /* CSS для второго и третьего элементов класса stick-active */
+    .slick-track .slick-slide:nth-child(3n+2) > div {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 800px){
+    /* CSS для первого и четвертого элемента класса stick-active */
+    .slick-track .slick-slide > div{
+        justify-content: center;
+    }
+
+}
+
+@media (max-width: 425px){
+
+    .slick-track .slick-slide > div{
+        overflow: hidden;
+    }
+
+    .slick-prev{
+        left: 0;
+        z-index: 100;
+    }
+
+    .slick-next{
+        right: 0;
+        z-index: 100;
+    }
+
+}
+
+.menu-container {
+    position: relative;
+    z-index: 1;
+}
+
+.menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 2;
+}
+
+/* убираем правый padding для body при появлении вертикальной полосы прокрутки */
+body::-webkit-scrollbar {
+    width: 17px;
+}
+
+/* убираем правый padding для #header и .content при появлении вертикальной полосы прокрутки */
+body.open-menu #header,
+body.open-menu .content {
+    padding-right: 0px;
+}
