@@ -1,9 +1,15 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	server "github.com/serenite11/web-app-kinobebra"
+	"github.com/serenite11/web-app-kinobebra/pkg/handler"
+	"log"
+)
 
 func main() {
-	router := gin.Default()
-	router.GET("/")
-	router.Run("localhost:8080")
+	handlers := new(handler.Handler)
+	srv := new(server.Server)
+	if err := srv.Run("8008", handlers.InitRoutes()); err != nil {
+		log.Fatalf("error: %s", err)
+	}
 }

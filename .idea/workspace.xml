@@ -5,7 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="416436d9-970f-4b60-8bde-1d81b6001c47" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/server/pkg/handler/auth.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/pkg/handler/film.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/pkg/handler/handler.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/pkg/handler/user.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/cmd/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/actor.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/pkg/handler/actor.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/film.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/user.go" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +57,12 @@
     "WebServerToolWindowFactoryState": "false",
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "C:/Users/Дольган/Desktop/projects/web-app cinema/server"
+    "last_opened_file_path": "C:/Users/Дольган/Desktop/projects/web-app cinema"
+  },
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "GitIgnore"
+    ]
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
