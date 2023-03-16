@@ -20,7 +20,8 @@ const styledTheme = {
     },
     media: {
         phone: "(max-width: 425px)",
-        tablet: "(max-width: 900px) and (min-width: 425px)"
+        tablet: "(max-width: 900px) and (min-width: 425px)",
+        phoneAndTablet : "(max-width: 900px)"
     }
 }
 

@@ -20,25 +20,34 @@ header{
     flex: 1 0 auto;
 }
 
-.fff{
+.navMenu {
     display: block;
     flex-grow: 1;
     font-size: 24px;
 }
 
-.fff a{
+.navMenu a {
     margin-left: 25px;
     text-decoration: none;
 }
 
-.sideMenu{
+.navMenu a:hover {
+    color: white;
+}
+
+.sideMenu {
     /*position:relative;*/
     z-index: 500;
     background-color: green;
 }
 
+.sideMenu nav{
+    width: 100%;
+}
+
 .active {
-    color:white;
+    color: white;
+    text-shadow: 0 0 4px #fff;
 }
 
 .inactive{
@@ -46,7 +55,7 @@ header{
 }
 
 @media (max-width: 900px){
-    .fff a{
+    .navMenu a {
         display: none;
     }
 }
@@ -123,9 +132,33 @@ header{
         z-index: 100;
     }
 
-    .slick-next{
+    .slick-next {
         right: 0;
         z-index: 100;
     }
 
+}
+
+.search {
+    width: 70%;
+}
+
+
+@media (max-width: 850px) {
+    .userMenu {
+        background-color: #294421 !important;
+        border: 1px solid;
+    }
+}
+
+.userMenu a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+
+.userMenu a:hover {
+    cursor: pointer;
+    text-shadow: 0 0 4px #fff;
 }

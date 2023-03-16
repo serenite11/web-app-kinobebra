@@ -1,29 +1,25 @@
 import * as React from 'react';
+import {useContext, useRef} from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import SearchIcon from '@mui/icons-material/Search';
 import {Container} from "@mui/material";
-import {useContext, useRef} from "react";
 import {MenuContext} from "../context/navState";
 import HamburgerButton from "./HamburgerButton";
 import {SideMenu} from "./SideBar";
 import useOnClickOutside from "../hooks/onClickOutside";
 import bebraLogo from "../bebra.png"
 import {NavLink} from "react-router-dom";
-import {Search, SearchIconWrapper, StyledInputBase} from "./SearchBar";
+import SearchBar from "./SearchBar";
 import {Logo} from "./Logo";
-
-
-
-
-
+import UserIcon from "./UserIcon";
 
 
 const Header = () => {
 
     const node = useRef<HTMLDivElement>(null);
     const menuButtonRef = useRef<HTMLDivElement>(null);
+    const userMenuButtonRef = useRef<HTMLDivElement>(null);
     const {isMenuOpen, toggleMenuMode} = useContext(MenuContext);
     useOnClickOutside(node, menuButtonRef, () => {
         if (isMenuOpen) {
@@ -43,8 +39,7 @@ const Header = () => {
                             <NavLink to={'/'}>
                                 <Logo src={bebraLogo}/>
                             </NavLink>
-                            <div className={'fff'}>
-
+                            <div className={'navMenu'}>
                                 <NavLink to={'/'}
                                          className={({isActive}) => (isActive ? 'active' : 'inactive')}>Главная</NavLink>
                                 <NavLink to={'/news'}
@@ -54,16 +49,10 @@ const Header = () => {
                                 <NavLink to={'/series'}
                                          className={({isActive}) => (isActive ? 'active' : 'inactive')}>Сериалы</NavLink>
                             </div>
-
-                            <Search>
-                                <SearchIconWrapper>
-                                    <SearchIcon/>
-                                </SearchIconWrapper>
-                                <StyledInputBase
-                                    placeholder="Поиск…"
-                                    inputProps={{'aria-label': 'search'}}
-                                />
-                            </Search>
+                            <SearchBar/>
+                            <div ref={userMenuButtonRef}>
+                                <UserIcon/>
+                            </div>
                         </Toolbar>
                     </Container>
                 </AppBar>

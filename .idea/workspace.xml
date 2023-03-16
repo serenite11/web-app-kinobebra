@@ -6,6 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="416436d9-970f-4b60-8bde-1d81b6001c47" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/Theme.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Theme.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Logo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Logo.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/SearchBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/SearchBar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/SideBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/SideBar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/context/navState.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/context/navState.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,12 +56,24 @@
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
     "last_opened_file_path": "C:/Users/Дольган/Desktop/projects/web-app cinema/server",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "ts.external.directory.path": "C:\\Codding\\Project\\web-app-kinobebra\\client\\node_modules\\typescript\\lib"
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "C:\\Codding\\Project\\web-app-kinobebra\\client\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="416436d9-970f-4b60-8bde-1d81b6001c47" name="Changes" comment="" />
+      <created>1678971051468</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1678971051468</updated>
+      <workItem from="1678971052951" duration="12045000" />
+    </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

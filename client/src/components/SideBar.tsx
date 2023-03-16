@@ -4,7 +4,7 @@ import { MenuContext } from '../context/navState';
 import arrow from '../arrow.svg';
 import {NavLink} from "react-router-dom";
 
-interface IComponent{
+export interface IComponent{
     open : boolean;
 }
 

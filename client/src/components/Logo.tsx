@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Logo = styled.img`
   max-height: 45px;
   max-width: 64px;
-  @media ${props => props.theme.media.phone} {
+  @media ${props => props.theme.media.phoneAndTablet} {
     display: none;
   }
 `
