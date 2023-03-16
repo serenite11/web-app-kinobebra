@@ -14,6 +14,7 @@ func (h *Handler) getAllFilms(c *gin.Context) {
 
 }
 
+//
 func (h *Handler) addFilm(c *gin.Context) {
 
 }
