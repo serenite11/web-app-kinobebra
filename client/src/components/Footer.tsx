@@ -43,6 +43,9 @@ const Footer = () => {
                 <a>Донаты на пивко</a>
                 <a>Разоблачение Азлагора</a>
             </LinkBlock>
+                <div style={{
+                    marginTop : '10px'
+                }}>v0.1.6.1</div>
         </FooterBlock>
     );
 };

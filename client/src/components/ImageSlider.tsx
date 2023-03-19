@@ -17,7 +17,7 @@ const ImageSlider: FC<PropsWithChildren> = ({children}) => {
                     slidesToShow: 3,
                     slidesToScroll: 3,
                     infinite: true,
-                    dots: true
+                    dots: true,
                 }
             },
             {

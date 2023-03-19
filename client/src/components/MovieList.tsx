@@ -20,7 +20,7 @@ const MovieList: FC = () => {
                     {data.map((item) => (
                         <MovieListItem key = {item.id} name={item.name}
                                        genre={item.genre}
-                                       producer={item.producer}
+                                       producersId={item.producersId}
                                        posterUrl={item.posterUrl}
                                        creationYear={item.creationYear}
                                        rating={item.rating}

@@ -2,7 +2,7 @@
   {
     "name" : "Аватар: Путь воды",
     "genre" : ["фантастика", "фэнтези", "боевик", "приключения"],
-    "producer" : "Джеймс Кэмерон",
+    "producersId" : [1],
     "posterUrl" : "https://avatars.mds.yandex.net/get-kinopoisk-image/6201401/2e51cb8b-fd51-4166-84a2-63559733baac/1920x",
     "creationYear" : 2022,
     "rating" : 7.8,
@@ -18,24 +18,24 @@
   {
     "name" : "Всё везде и сразу",
     "genre" : ["фантастика", "фэнтези", "боевик", "приключения"],
-    "producer" : "Джеймс Кэмерон",
+    "producersId" : [2,3],
     "posterUrl" : "https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/e3260e3b-fd58-49eb-b2ae-347e3d6555b5/1920x",
     "creationYear" : 2022,
-    "rating" : 7.8,
+    "rating" : 7.6,
     "cast" : [
-      "Сэм Уортингтон",
-      "Зои Салдана",
-      "Сигурни Уивер",
-      "Стивен Лэнг",
-      "Кейт Уинслет"
+      "Феликс Каммерер",
+      "Альбрехт Шух",
+      "Аарон Хилмер",
+      "Мориц Клаус",
+      "Адриан Грюневальд"
     ],
     "id" : 64632316946156464
 
   },
   {
     "name" : "На Западном фронте без перемен",
-    "genre" : ["фантастика", "фэнтези", "боевик", "приключения"],
-    "producer" : "Джеймс Кэмерон",
+    "genre" : ["военный", "драма", "боевик", "история"],
+    "producersId" : [4],
     "posterUrl" : "https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/a56903f1-66bd-472d-bba0-05854afbfdae/1920x",
     "creationYear" : 2022,
     "rating" : 7.8,
@@ -52,7 +52,7 @@
   {
     "name" : "Кот в сапогах 2: Последнее желание",
     "genre" : ["фантастика", "фэнтези", "боевик", "приключения"],
-    "producer" : "Джеймс Кэмерон",
+    "producersId" : [5,6],
     "posterUrl" : "https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/19b2a831-d81b-4364-a82a-dc6ca779023f/1920x",
     "creationYear" : 2022,
     "rating" : 7.8,
@@ -69,7 +69,7 @@
   {
     "name" : "Топ Ган: Мэверик",
     "genre" : ["фантастика", "фэнтези", "боевик", "приключения"],
-    "producer" : "Джеймс Кэмерон",
+    "producersId" : [7],
     "posterUrl" : "https://avatars.mds.yandex.net/get-kinopoisk-image/6201401/57f8f038-f628-44d3-922d-fb28f719ff77/1920x",
     "creationYear" : 2022,
     "rating" : 7.8,
@@ -86,7 +86,7 @@
   {
     "name" : "Джентльмены",
     "genre" : ["фантастика", "фэнтези", "боевик", "приключения"],
-    "producer" : "Джеймс Кэмерон",
+    "producersId" : [8],
     "posterUrl" : "https://avatars.mds.yandex.net/get-kinopoisk-image/1600647/b0818ad5-daeb-420b-a37a-66186d209788/1920x",
     "creationYear" : 2022,
     "rating" : 7.8,
@@ -103,7 +103,7 @@
   {
     "name" : "Пираты Карибского моря: Проклятие Черной жемчужины",
     "genre" : ["фантастика", "фэнтези", "боевик", "приключения"],
-    "producer" : "Джеймс Кэмерон",
+    "producersId" : [9],
     "posterUrl" : "https://avatars.mds.yandex.net/get-kinopoisk-image/1629390/02c6b4cb-a610-4503-9e8c-9dee69b5a584/1920x",
     "creationYear" : 2022,
     "rating" : 7.8,
@@ -120,7 +120,7 @@
   {
     "name" : "Пираты Карибского моря: Проклятие Черной жемчужины",
     "genre" : ["фантастика", "фэнтези", "боевик", "приключения"],
-    "producer" : "Джеймс Кэмерон",
+    "producersId" : [9],
     "posterUrl" : "https://avatars.mds.yandex.net/get-kinopoisk-image/1629390/02c6b4cb-a610-4503-9e8c-9dee69b5a584/1920x",
     "creationYear" : 2022,
     "rating" : 7.8,
@@ -137,7 +137,7 @@
   {
     "name" : "Пираты Карибского моря: Проклятие Черной жемчужины",
     "genre" : ["фантастика", "фэнтези", "боевик", "приключения"],
-    "producer" : "Джеймс Кэмерон",
+    "producersId" : [9],
     "posterUrl" : "https://avatars.mds.yandex.net/get-kinopoisk-image/1629390/02c6b4cb-a610-4503-9e8c-9dee69b5a584/1920x",
     "creationYear" : 2022,
     "rating" : 7.8,

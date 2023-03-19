@@ -1,5 +1,6 @@
 import React, {FC} from 'react';
 import styled from "styled-components";
+import {NavLink} from "react-router-dom";
 
 const Movie = styled.div`
   width: 243px;
@@ -7,18 +8,22 @@ const Movie = styled.div`
   background-color: black;
   display: flex;
   flex-direction: column;
-  border-radius : 10px;
-  @media ${props => props.theme.media.phone}{
-    width : 75%;
+  border-radius: 10px;
+  @media ${props => props.theme.media.phone} {
+    width: 75%;
     height: 500px;
   }
-  &:hover{
-    & img{
+
+  &:hover {
+    & img {
       transform: translateY(-5px);
       transition: all 0.25s ease-in-out;
     }
+ 
+
+    cursor: pointer;
   }
-  
+
 `
 
 const Poster = styled.img`
@@ -47,21 +52,21 @@ const Rating = styled.div`
 `
 
 
-
-interface IMovieInfo {
-    "name" : String,
-    "genre" : String[],
-    "producer" : String,
-    "posterUrl" : string,
-    "creationYear" : Number | Date,
-    "rating" : Number,
-    "cast" : String[],
-    "id" : Number
+export interface IMovieInfo {
+    "name": String,
+    "genre": String[],
+    "producersId": Number[],
+    "posterUrl": string,
+    "creationYear": Number | Date,
+    "rating": Number,
+    "cast": String[],
+    "id": Number
 }
 
 
-const MovieListItem:FC<IMovieInfo> = (props) => {
+const MovieListItem: FC<IMovieInfo> = (props) => {
     return (
+        <NavLink to={`/${props.id}`} className={'movieLink'}>
             <Movie>
                 <Poster src={props.posterUrl}/>
                 <Title>{props.name}</Title>
@@ -70,6 +75,7 @@ const MovieListItem:FC<IMovieInfo> = (props) => {
                     <div>{props.rating.toString()}</div>
                 </AdditionalInfo>
             </Movie>
+        </NavLink>
     );
 };
 
