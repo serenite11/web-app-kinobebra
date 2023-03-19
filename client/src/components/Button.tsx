@@ -34,7 +34,7 @@ const ButtonStyled = styled.button`
 const Button:FC<PropsWithChildren> = ({children}) => {
     return (
         <ButtonStyled type="submit">
-            Вход
+            {children}
         </ButtonStyled>
     );
 };

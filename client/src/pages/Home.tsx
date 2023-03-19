@@ -1,9 +1,9 @@
 import React, {FC, PropsWithChildren} from 'react';
 import styled from "styled-components";
-import SliderValueLabel from "@mui/material/Slider/SliderValueLabel";
-import propTypes = SliderValueLabel.propTypes;
+import data from "../mock/movies.json"
+
+
 import MovieList from "../components/MovieList";
-import ImageSlider from "../components/ImageSlider";
 
 interface HomePageProps {
     color?: string

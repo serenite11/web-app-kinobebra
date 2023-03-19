@@ -1,6 +1,5 @@
 import React, {FC, PropsWithChildren} from 'react';
 import Slider from 'react-slick';
-import bebraLogo from "../bebra.png"
 
 const ImageSlider: FC<PropsWithChildren> = ({children}) => {
     const settings = {

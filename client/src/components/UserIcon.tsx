@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import LoginIcon from '@mui/icons-material/Login';
 import styled from "styled-components";
 import {MenuContext} from "../context/navState";
@@ -18,18 +18,13 @@ const UserButton = styled.div`
     background-color: rgba(255, 255, 255, 0.2); /* значение для прозрачности фона */
     cursor: pointer;
   }
-  
 `
 
-
-
 const UserIcon = () => {
-
     const {toggleUserMenuMode} = useContext(MenuContext)
     const clickHandler = () => {
         toggleUserMenuMode()
     };
-
 
     return (
         <UserButton onClick={clickHandler}>

@@ -9,12 +9,15 @@ interface IValue {
     handleLoginClose: () => void;
     showModal: boolean;
     setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+    handleRegisterClick: () => void;
+    handleRegisterClose: () => void;
+    showRegisterModal: boolean;
+    setShowRegisterModal: React.Dispatch<React.SetStateAction<boolean>>;
 
 }
 
 export const MenuContext = createContext<IValue>({
-    setShowModal(value: ((prevState: boolean) => boolean) | boolean): void {
-    },
+
     isMenuOpen: true,
     toggleMenuMode: () => {
     },
@@ -25,7 +28,16 @@ export const MenuContext = createContext<IValue>({
     handleLoginClick: () => {
     },
     handleLoginClose(): void {
-    }
+    },
+    setShowModal(value: ((prevState: boolean) => boolean) | boolean): void {
+    },
+    showRegisterModal: false,
+    handleRegisterClick: () => {
+    },
+    handleRegisterClose(): void {
+    },
+    setShowRegisterModal(value: ((prevState: boolean) => boolean) | boolean): void {
+    },
 
 });
 
@@ -33,10 +45,19 @@ const NavState: FC<PropsWithChildren> = ({children}) => {
     const [isMenuOpen, toggleMenu] = useState(false);
     const [isUserMenuOpen, setUserMenu] = useState<boolean>(false)
     const [showModal, setShowModal] = useState(false);
+    const [showRegisterModal, setShowRegisterModal] = useState(false);
 
     function toggleMenuMode() {
         toggleMenu(!isMenuOpen);
     }
+
+    const handleRegisterClick = () => {
+        setShowRegisterModal(true);
+    };
+
+    const handleRegisterClose = () => {
+        setShowRegisterModal(false);
+    };
 
     const handleLoginClick = () => {
         setShowModal(true);
@@ -59,7 +80,11 @@ const NavState: FC<PropsWithChildren> = ({children}) => {
             showModal,
             handleLoginClick,
             setShowModal,
-            handleLoginClose
+            handleLoginClose,
+            handleRegisterClick,
+            handleRegisterClose,
+            showRegisterModal,
+            setShowRegisterModal
         }}>{children}</MenuContext.Provider>
     );
 };

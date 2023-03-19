@@ -33,10 +33,10 @@ interface ModalProps {
     show: boolean;
 }
 
-interface ILoginPageProps {
-    modalContentRef: React.RefObject<HTMLDivElement>
-    loginButtonRef: React.RefObject<HTMLDivElement>
-    handleLoginClose: () => void;
+interface IRegisterPageProps {
+    registerModalContentRef: React.RefObject<HTMLDivElement>
+    registerButtonRef: React.RefObject<HTMLDivElement>
+    handleRegisterClose: () => void;
     showModal: boolean;
     setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 
@@ -128,19 +128,18 @@ const ButtonStyled = styled.button`
 
 `
 
-const LoginPage: FC<ILoginPageProps> = ({
-                                            handleLoginClose,
-                                            modalContentRef,
+const LoginPage: FC<IRegisterPageProps> = ({
+                                            handleRegisterClose,
+                                            registerModalContentRef,
                                             showModal,
                                             setShowModal,
-                                            loginButtonRef
+                                            registerButtonRef
                                         }) => {
     const handleCloseModal = (event: MouseEvent) => {
-        // Close the modal if the click is outside of the modal content element
-        if (modalContentRef.current &&
-            !modalContentRef.current.contains(event.target as Node) &&
-            loginButtonRef.current &&
-            !loginButtonRef.current.contains(event.target as Node)) {
+        if (registerModalContentRef.current &&
+            !registerModalContentRef.current.contains(event.target as Node) &&
+            registerButtonRef.current &&
+            !registerButtonRef.current.contains(event.target as Node)) {
             setShowModal(false);
         }
     };
@@ -158,17 +157,18 @@ const LoginPage: FC<ILoginPageProps> = ({
     return (
         <>
             <Modal show={showModal}>
-                <ModalContent ref={modalContentRef}>
+                <ModalContent ref={registerModalContentRef}>
                     <LoginWrapper>
-                        <CloseIcon className={'closeModalIcon'} onClick={handleLoginClose}/>
-                        <PageTitle>Авторизация</PageTitle>
+                        <CloseIcon className={'closeModalIcon'} onClick={handleRegisterClose}/>
+                        <PageTitle>Регистрация</PageTitle>
+                        <ColorInput type={InputType.Text} label={'Ваше имя'}/>
+                        <ColorInput type={InputType.Text} label={'Логин'}/>
                         <ColorInput type={InputType.Email} label={'Почта'}/>
                         <ColorInput type={InputType.Password} label={'Пароль'}/>
-                        <div>
-                            <a>Забыли пароль</a>
-                        </div>
+                        <ColorInput type={InputType.Checkbox} label={'Согласие на обработку данных'}/>
+
                         <Button>
-                            Вход
+                            Регистрация
                         </Button>
                     </LoginWrapper>
                 </ModalContent>

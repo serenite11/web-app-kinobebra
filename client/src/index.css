@@ -191,6 +191,15 @@ header {
     align-items: center;
 }
 
+.flex-wrapper{
+    flex-direction: row;
+    justify-content: center;
+}
+
+.flex-wrapper > input {
+    width: auto;
+}
+
 .input-wrapper:not(:last-of-type){
     margin-bottom: 20px;
 }

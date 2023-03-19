@@ -12,19 +12,12 @@ const MenuButton = styled.button`
   background: none;
   padding-left: 3px;
 
-  @media ${props => props.theme.media.tablet} {
-    display: block;
-  }
-
-  @media ${props => props.theme.media.phone} {
+  @media ${props => props.theme.media.phoneAndTablet} {
     display: block;
   }
   
   span {
     transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-  }
-
-  :focus {
   }
 
   :hover {
@@ -73,7 +66,6 @@ const HamburgerButton = () => {
     const { isMenuOpen, toggleMenuMode } = useContext(MenuContext);
 
     const clickHandler = () => {
-        console.log('Щелчок по кнопке меню')
             toggleMenuMode()
     };
 

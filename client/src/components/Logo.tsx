@@ -8,7 +8,6 @@ export const Logo = styled.img`
   }
 `
 
-
 export const LogoTitle = styled.div`
   display: block;
   flex-grow: 1;

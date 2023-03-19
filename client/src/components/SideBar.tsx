@@ -1,14 +1,13 @@
 import React, {FC, PropsWithChildren, useContext} from 'react';
-import styled, {css, ThemedStyledProps} from 'styled-components';
+import styled, {css} from 'styled-components';
 import { MenuContext } from '../context/navState';
 import arrow from '../arrow.svg';
-import {NavLink} from "react-router-dom";
 
-export interface IComponent{
+export interface INavBarProps {
     open : boolean;
 }
 
-const Menu = styled.nav<IComponent>`
+const Menu = styled.nav<INavBarProps>`
   position: absolute;
   top: 0;
   left: 0;
@@ -66,7 +65,6 @@ export const MenuLink = styled.a`
 
 export const SideMenu:FC<PropsWithChildren> = ({ children }) => {
     const { isMenuOpen } = useContext(MenuContext);
-
     return <Menu open={isMenuOpen}>{children}</Menu>;
 };
 

@@ -1,6 +1,7 @@
 import React, {FC} from 'react';
 import styled from "styled-components";
 import {NavLink} from "react-router-dom";
+import {IMovieInfo} from "../types/Movies";
 
 const Movie = styled.div`
   width: 243px;
@@ -13,24 +14,19 @@ const Movie = styled.div`
     width: 75%;
     height: 500px;
   }
-
   &:hover {
     & img {
       transform: translateY(-5px);
       transition: all 0.25s ease-in-out;
     }
- 
-
     cursor: pointer;
   }
 
 `
-
 const Poster = styled.img`
   max-height: 80%;
   border-radius: 10px 10px 0 0;
 `
-
 const Title = styled.div`
   text-align: center;
   align-self: center;
@@ -45,23 +41,7 @@ const AdditionalInfo = styled.div`
   font-size: 18px;
 `
 
-const Date = styled.div`
-`
 
-const Rating = styled.div`
-`
-
-
-export interface IMovieInfo {
-    "name": String,
-    "genre": String[],
-    "producersId": Number[],
-    "posterUrl": string,
-    "creationYear": Number | Date,
-    "rating": Number,
-    "cast": String[],
-    "id": Number
-}
 
 
 const MovieListItem: FC<IMovieInfo> = (props) => {

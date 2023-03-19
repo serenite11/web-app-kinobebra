@@ -1,47 +1,21 @@
-import {styled as muiStyled, alpha} from '@mui/material/styles';
+import {alpha, styled as muiStyled} from '@mui/material/styles';
 
 import InputBase from "@mui/material/InputBase";
+import React, {useContext} from 'react';
+import SearchIcon from "@mui/icons-material/Search";
+import {Link} from "react-router-dom";
+import {MenuContext} from "../context/navState";
+import {UserMenu} from "./UserMenu";
 
 interface ISearchBarProps {
     inputRef: React.RefObject<HTMLInputElement>;
     loginButtonRef: React.RefObject<HTMLDivElement>
-
-    // modalContentRef: React.RefObject<HTMLDivElement>
+    registerButtonRef: React.RefObject<HTMLDivElement>
     handleLoginClick: () => void;
+    handleRegisterClick: () => void;
 }
 
-const UserButtonMenu = styled.div<IComponent>`
-  width: calc(100% + 49px);
-  height: 65px;
-  margin-top: 10px;
-  position: absolute;
-  box-sizing: border-box;
-  border-radius: 5px;
-  background-color: #294421;
-  //background-color: rgba(255, 255, 255, 0.15); /* значение для прозрачности фона */
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* выравнивание по горизонтали */
-  align-items: center; /* выравнивание по вертикали */
-  transform: translateY(-150px);
-  opacity: 0;
-  transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
 
-  ${props =>
-          props.open &&
-          css`
-            transform: translateY(0);
-            opacity: 1;
-            z-index: 1;
-          `}
-  &:hover {
-    border: 1px solid;
-    //background-color: rgba(255, 255, 255, 0.2); /* значение для прозрачности фона */
-    cursor: pointer;
-  }
-
-}
-`
 export const Search = muiStyled('div')(({theme}) => ({
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
@@ -82,16 +56,8 @@ export const StyledInputBase = muiStyled(InputBase)(({theme}) => ({
     },
 }));
 
-import React, {RefObject, useContext, useState} from 'react';
-import SearchIcon from "@mui/icons-material/Search";
-import styled, {css} from "styled-components";
-import {Link} from "react-router-dom";
-import {MenuContext} from "../context/navState";
-import {IComponent} from "./SideBar";
-
-const SearchBar = ({inputRef, loginButtonRef, handleLoginClick}: ISearchBarProps) => {
+const SearchBar = ({inputRef, loginButtonRef, handleLoginClick,registerButtonRef,handleRegisterClick}: ISearchBarProps) => {
     const {isUserMenuOpen, toggleUserMenuMode} = useContext(MenuContext)
-
     return (
         <Search className={'search'}>
             <SearchIconWrapper>
@@ -102,16 +68,22 @@ const SearchBar = ({inputRef, loginButtonRef, handleLoginClick}: ISearchBarProps
                 inputProps={{'aria-label': 'search'}}
             />
             <div ref={inputRef}>
-                <UserButtonMenu open={isUserMenuOpen} className={'userMenu'}>
-
+                <UserMenu open={isUserMenuOpen} className={'userMenu'}>
                     <div onClick={() => {
                         handleLoginClick()
                         toggleUserMenuMode()
                     }
-                    } ref={loginButtonRef}>Авторизация
+                    }
+                         ref={loginButtonRef}>Авторизация
                     </div>
-                    <Link to={'/register'}>Зарегистрироваться</Link>
-                </UserButtonMenu>
+                    <div onClick={() => {
+                        handleRegisterClick()
+                        toggleUserMenuMode()
+                    }
+                    }
+                         ref={registerButtonRef}>Регистрация
+                    </div>
+                </UserMenu>
             </div>
         </Search>
     );

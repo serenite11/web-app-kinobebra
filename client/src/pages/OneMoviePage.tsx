@@ -1,13 +1,11 @@
 import React, {FC, useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
-import {styled as muiStyled} from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
 import styled from "styled-components";
 import data from "../mock/movies.json"
-import {IMovieInfo} from "../components/MovieListItem";
 import producers from "../mock/producers.json";
+import {IMovieInfo} from "../types/Movies";
 
 const MovieInfo = styled.div`
   display: flex;

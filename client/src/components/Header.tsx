@@ -1,5 +1,4 @@
-import * as React from 'react';
-import {RefObject, useContext, useRef} from 'react';
+import React, {useContext, useRef} from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -14,6 +13,7 @@ import SearchBar from "./SearchBar";
 import {Logo} from "./Logo";
 import UserIcon from "./UserIcon";
 import LoginPage from "../pages/LoginPage";
+import RegisterPage from "../pages/RegisterPage";
 
 
 const Header = () => {
@@ -23,6 +23,9 @@ const Header = () => {
     const userMenuButtonRef = useRef<HTMLDivElement>(null);
     const modalContentRef = useRef<HTMLDivElement>(null);
     const loginButtonRef = useRef<HTMLDivElement>(null);
+    const registerModalContentRef = useRef<HTMLDivElement>(null);
+    const registerButtonRef = useRef<HTMLDivElement>(null);
+
 
     const {
         isMenuOpen,
@@ -32,7 +35,11 @@ const Header = () => {
         showModal,
         handleLoginClick,
         setShowModal,
-        handleLoginClose
+        handleLoginClose,
+        handleRegisterClose,
+        handleRegisterClick,
+        showRegisterModal,
+        setShowRegisterModal
     } = useContext(MenuContext);
 
     useOnClickOutside(node, menuButtonRef, () => {
@@ -40,10 +47,9 @@ const Header = () => {
             toggleMenuMode();
         }
     });
+
     useOnClickOutsideForMenu(userMenuRef, userMenuButtonRef, () => {
-        console.log('Проверяю открыто ли меню')
         if (isUserMenuOpen) {
-            console.log('Оно открыто, закрываю!')
             toggleUserMenuMode();
         }
     })
@@ -74,6 +80,8 @@ const Header = () => {
                             <SearchBar
                                 inputRef={userMenuRef}
                                 loginButtonRef={loginButtonRef}
+                                registerButtonRef = {registerButtonRef}
+                                handleRegisterClick = {handleRegisterClick}
                                 handleLoginClick={handleLoginClick}
                             />
                             <div ref={userMenuButtonRef}>
@@ -83,9 +91,15 @@ const Header = () => {
                         <LoginPage
                             handleLoginClose={handleLoginClose}
                             modalContentRef={modalContentRef}
-                            showModal = {showModal}
-                            setShowModal = {setShowModal}
+                            showModal={showModal}
+                            setShowModal={setShowModal}
                             loginButtonRef={loginButtonRef}
+                        />
+                        <RegisterPage handleRegisterClose={handleRegisterClose}
+                                      registerButtonRef={registerButtonRef}
+                                      registerModalContentRef={registerModalContentRef}
+                                      setShowModal={setShowRegisterModal}
+                                      showModal={showRegisterModal}
                         />
                     </Container>
                 </AppBar>

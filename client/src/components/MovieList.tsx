@@ -26,7 +26,6 @@ const MovieList: FC = () => {
                                        rating={item.rating}
                                        cast={item.cast}
                                        id={item.id}/>
-
                     ))}
                 </ImageSlider>
     );
