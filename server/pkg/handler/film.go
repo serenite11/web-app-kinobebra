@@ -1,13 +1,14 @@
 package handler
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+)
 
 type Film struct {
-	Id          string
-	Title       string
-	Description string
-	Rating      float32
-	Actors      []Actor
+	Id          string  `json:"id"`
+	Title       string  `json:"title"`
+	Description string  `json:"description"`
+	Rating      float32 `json:"rating"`
 }
 
 func (h *Handler) getAllFilms(c *gin.Context) {

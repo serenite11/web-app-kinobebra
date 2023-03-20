@@ -3,10 +3,10 @@ package handler
 import "github.com/gin-gonic/gin"
 
 type Actor struct {
-	Name     string
-	LastName string
-	Gender   string
-	Film     []Film
+	Id       string `json:"id"`
+	Name     string `json:"name"`
+	LastName string `json:"lastName"`
+	Gender   string `json:"gender"`
 }
 
 func (h *Handler) getAllActors(c *gin.Context) {
