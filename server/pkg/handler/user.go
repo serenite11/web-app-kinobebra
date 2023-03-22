@@ -6,5 +6,4 @@ type User struct {
 	Login       string `json:"login"`
 	Email       string `json:"email"`
 	DateOfBirth string `json:"date-of-birth"`
-	Mailing     bool   `json:"mailing"`
 }
