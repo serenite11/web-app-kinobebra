@@ -13,6 +13,8 @@ import SearchBar from "./SearchBar";
 import {Logo} from "./Logo";
 import UserIcon from "./UserIcon";
 import LoginPage from "../pages/LoginPage";
+import FavoriteListIcon from "./FavoriteListIcon";
+import AuthorizedUserMenu from "./AuthorizedUserMenu";
 import RegisterPage from "../pages/RegisterPage";
 
 
@@ -26,7 +28,6 @@ const Header = () => {
     const registerModalContentRef = useRef<HTMLDivElement>(null);
     const registerButtonRef = useRef<HTMLDivElement>(null);
 
-
     const {
         isMenuOpen,
         toggleMenuMode,
@@ -39,7 +40,11 @@ const Header = () => {
         handleRegisterClose,
         handleRegisterClick,
         showRegisterModal,
-        setShowRegisterModal
+        setShowRegisterModal,
+        isUserAuth,
+        isAuthorizedUserMenuOpen,
+        setAuthorizedUserMenuOpen,
+        setUserAuth
     } = useContext(MenuContext);
 
     useOnClickOutside(node, menuButtonRef, () => {
@@ -59,7 +64,7 @@ const Header = () => {
         <>
             <Box sx={{flexGrow: 0}}>
                 <AppBar className={'navbar'}>
-                    <Container>
+                    <Container style={{position: "relative"}}>
                         <Toolbar className={'header'}>
                             <div ref={menuButtonRef}>
                                 <HamburgerButton/>
@@ -77,30 +82,40 @@ const Header = () => {
                                 <NavLink to={'/series'}
                                          className={({isActive}) => (isActive ? 'active' : 'inactive')}>Сериалы</NavLink>
                             </div>
+                            {isUserAuth && <FavoriteListIcon/>}
                             <SearchBar
                                 inputRef={userMenuRef}
                                 loginButtonRef={loginButtonRef}
-                                registerButtonRef = {registerButtonRef}
-                                handleRegisterClick = {handleRegisterClick}
+                                registerButtonRef={registerButtonRef}
+                                handleRegisterClick={handleRegisterClick}
                                 handleLoginClick={handleLoginClick}
+                                isUserAuth={isUserAuth}
                             />
                             <div ref={userMenuButtonRef}>
                                 <UserIcon/>
                             </div>
                         </Toolbar>
-                        <LoginPage
-                            handleLoginClose={handleLoginClose}
-                            modalContentRef={modalContentRef}
-                            showModal={showModal}
-                            setShowModal={setShowModal}
-                            loginButtonRef={loginButtonRef}
-                        />
-                        <RegisterPage handleRegisterClose={handleRegisterClose}
-                                      registerButtonRef={registerButtonRef}
-                                      registerModalContentRef={registerModalContentRef}
-                                      setShowModal={setShowRegisterModal}
-                                      showModal={showRegisterModal}
-                        />
+                        {isUserAuth ?
+                            <AuthorizedUserMenu open={isAuthorizedUserMenuOpen}
+                                                setUserAuth = {setUserAuth}
+                                                setAuthorizedUserMenuOpen={setAuthorizedUserMenuOpen}/>
+                            : <>
+                                <LoginPage
+                                    handleLoginClose={handleLoginClose}
+                                    modalContentRef={modalContentRef}
+                                    showModal={showModal}
+                                    setShowModal={setShowModal}
+                                    loginButtonRef={loginButtonRef}
+                                    setUserAuth={setUserAuth}
+                                />
+                                <RegisterPage handleRegisterClose={handleRegisterClose}
+                                              registerButtonRef={registerButtonRef}
+                                              registerModalContentRef={registerModalContentRef}
+                                              setShowModal={setShowRegisterModal}
+                                              showModal={showRegisterModal}
+                                />
+                            </>
+                        }
                     </Container>
                 </AppBar>
             </Box>

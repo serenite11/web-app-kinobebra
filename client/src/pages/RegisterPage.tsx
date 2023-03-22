@@ -3,6 +3,7 @@ import styled, {css} from "styled-components";
 import CloseIcon from '@mui/icons-material/Close';
 import ColorInput, {InputType} from "../components/Input";
 import Button from "../components/Button";
+import {useForm} from "react-hook-form";
 
 const PageTitle = styled.div`
   margin-bottom: 10px;
@@ -70,7 +71,7 @@ const Modal = styled.div<ModalProps>`
     left: 0;
     width: 100%;
     height: 100%;
-    transform: translateY(100%);
+    transform: translateY(150%);
   }
 
   ${props =>
@@ -128,13 +129,13 @@ const ButtonStyled = styled.button`
 
 `
 
-const LoginPage: FC<IRegisterPageProps> = ({
-                                            handleRegisterClose,
-                                            registerModalContentRef,
-                                            showModal,
-                                            setShowModal,
-                                            registerButtonRef
-                                        }) => {
+const RegisterPage: FC<IRegisterPageProps> = ({
+                                                  handleRegisterClose,
+                                                  registerModalContentRef,
+                                                  showModal,
+                                                  setShowModal,
+                                                  registerButtonRef
+                                              }) => {
     const handleCloseModal = (event: MouseEvent) => {
         if (registerModalContentRef.current &&
             !registerModalContentRef.current.contains(event.target as Node) &&
@@ -145,14 +146,24 @@ const LoginPage: FC<IRegisterPageProps> = ({
     };
 
     useEffect(() => {
-        // Add a click event listener to the document to close the modal when the user clicks outside of it
         document.addEventListener('click', handleCloseModal);
-
         return () => {
             // Remove the click event listener when the component unmounts
             document.removeEventListener('click', handleCloseModal);
         };
     }, []);
+
+    const {
+        register,
+        formState: {
+            errors
+        },
+        handleSubmit
+    } = useForm()
+
+    const onSubmit = (data: object) => {
+        alert(JSON.stringify(data))
+    }
 
     return (
         <>
@@ -161,15 +172,19 @@ const LoginPage: FC<IRegisterPageProps> = ({
                     <LoginWrapper>
                         <CloseIcon className={'closeModalIcon'} onClick={handleRegisterClose}/>
                         <PageTitle>Регистрация</PageTitle>
-                        <ColorInput type={InputType.Text} label={'Ваше имя'}/>
-                        <ColorInput type={InputType.Text} label={'Логин'}/>
-                        <ColorInput type={InputType.Email} label={'Почта'}/>
-                        <ColorInput type={InputType.Password} label={'Пароль'}/>
-                        <ColorInput type={InputType.Checkbox} label={'Согласие на обработку данных'}/>
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                            <ColorInput {...register('name')} type={InputType.Text} label={'Ваше имя'} id={'name'}/>
+                            <ColorInput {...register('login')} type={InputType.Text} label={'Логин'} id={'login'}/>
+                            <ColorInput {...register('email')} type={InputType.Email} label={'Почта'} id={'emailReg'}/>
+                            <ColorInput {...register('password')} type={InputType.Password} label={'Пароль'}
+                                        id={'passwordReg'}/>
+                            <ColorInput {...register('dataAgree')} type={InputType.Checkbox}
+                                        label={'Согласие на обработку данных'} id={'agree'}/>
 
-                        <Button>
-                            Регистрация
-                        </Button>
+                            <Button>
+                                Регистрация
+                            </Button>
+                        </form>
                     </LoginWrapper>
                 </ModalContent>
             </Modal>
@@ -177,4 +192,4 @@ const LoginPage: FC<IRegisterPageProps> = ({
     );
 };
 
-export default LoginPage;
+export default RegisterPage;

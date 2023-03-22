@@ -1,7 +1,8 @@
 import React, {FC, PropsWithChildren, useContext} from 'react';
 import styled, {css} from 'styled-components';
-import { MenuContext } from '../context/navState';
+import {MenuContext} from '../context/navState';
 import arrow from '../arrow.svg';
+import {NavLink} from "react-router-dom";
 
 export interface INavBarProps {
     open : boolean;
@@ -38,7 +39,7 @@ const Menu = styled.nav<INavBarProps>`
     `}
 `;
 
-export const MenuLink = styled.a`
+export const MenuLink = styled.div`
   position: relative;
   display: block;
   text-align: left;
@@ -63,19 +64,17 @@ export const MenuLink = styled.a`
   }
 `;
 
-export const SideMenu:FC<PropsWithChildren> = ({ children }) => {
-    const { isMenuOpen } = useContext(MenuContext);
-    return <Menu open={isMenuOpen}>{children}</Menu>;
+export const SideMenu:FC = () => {
+
+    const {isMenuOpen, toggleMenuMode} = useContext(MenuContext);
+    const handleCloseMenu = () => {
+        toggleMenuMode()
+    }
+    return <Menu open={isMenuOpen}>
+        <NavLink onClick = {handleCloseMenu} to={'/'}><MenuLink>Главная</MenuLink></NavLink>
+        <NavLink onClick = {handleCloseMenu} to={'/news'}><MenuLink>Новинки</MenuLink></NavLink>
+        <NavLink onClick = {handleCloseMenu} to={'/movies'}><MenuLink>Фильмы</MenuLink></NavLink>
+        <NavLink onClick = {handleCloseMenu} to={'/series'}><MenuLink>Сериалы</MenuLink></NavLink>
+    </Menu>;
 };
 
-
-SideMenu.defaultProps = {
-    children: (
-        <>
-            <MenuLink href="/">Главная</MenuLink>
-            <MenuLink href="/articles">Новинки</MenuLink>
-            <MenuLink href="/about">Фильмы</MenuLink>
-            <MenuLink href="/contact">Сериалы</MenuLink>
-        </>
-    ),
-};

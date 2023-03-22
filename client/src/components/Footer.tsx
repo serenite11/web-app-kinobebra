@@ -12,9 +12,14 @@ const FooterBlock = styled.footer`
   flex: 0 0 auto;
   flex-wrap: wrap;
   margin-top: 20px;
+  color: black;
+  & div{
+    color: black;
+  }
 `
 
 const DescBlock = styled.div`
+  color: black;
   @media ${props => props.theme.media.phone}{
     display:none;
   }
@@ -29,6 +34,11 @@ const LinkBlock = styled.div`
     align-items: center;
     row-gap: 10px;
   }
+  
+  & a{
+    color: black;
+  }
+  
 `
 
 
@@ -37,12 +47,12 @@ const Footer = () => {
         <FooterBlock>
             <DescBlock>Сайт сделан под 3 бутылки пива Дольганом и Вадимом</DescBlock>
             <LinkBlock>
-                <a>Репозиторий</a>
+                <a href={'https://github.com/serenite11/web-app-kinobebra'} target={'_blank'}>Репозиторий</a>
                 <a>Контакты</a>
                 <a>Донаты на пивко</a>
                 <a>Разоблачение Азлагора</a>
             </LinkBlock>
-            <div style={{marginTop: '10px'}}>v0.1.7</div>
+            <div style={{marginTop: '10px'}}>v0.1.8</div>
         </FooterBlock>
     );
 };

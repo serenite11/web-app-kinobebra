@@ -1,4 +1,4 @@
-import React, {createContext, FC, PropsWithChildren, useState, Dispatch} from 'react';
+import React, {createContext, FC, PropsWithChildren, useState} from 'react';
 
 interface IValue {
     isMenuOpen: boolean;
@@ -13,10 +13,17 @@ interface IValue {
     handleRegisterClose: () => void;
     showRegisterModal: boolean;
     setShowRegisterModal: React.Dispatch<React.SetStateAction<boolean>>;
+    isAuthorizedUserMenuOpen: boolean;
+    setAuthorizedUserMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    isUserAuth: boolean;
+    setUserAuth: React.Dispatch<React.SetStateAction<boolean>>;
+
 
 }
 
 export const MenuContext = createContext<IValue>({
+    isUserAuth: false, setUserAuth(value: ((prevState: boolean) => boolean) | boolean): void {
+    },
 
     isMenuOpen: true,
     toggleMenuMode: () => {
@@ -38,6 +45,10 @@ export const MenuContext = createContext<IValue>({
     },
     setShowRegisterModal(value: ((prevState: boolean) => boolean) | boolean): void {
     },
+    isAuthorizedUserMenuOpen: false,
+    setAuthorizedUserMenuOpen(value: ((prevState: boolean) => boolean) | boolean): void {
+    }
+
 
 });
 
@@ -46,6 +57,8 @@ const NavState: FC<PropsWithChildren> = ({children}) => {
     const [isUserMenuOpen, setUserMenu] = useState<boolean>(false)
     const [showModal, setShowModal] = useState(false);
     const [showRegisterModal, setShowRegisterModal] = useState(false);
+    const [isAuthorizedUserMenuOpen, setAuthorizedUserMenuOpen] = useState(false)
+    const [isUserAuth, setUserAuth] = useState<boolean>(false)
 
     function toggleMenuMode() {
         toggleMenu(!isMenuOpen);
@@ -68,7 +81,10 @@ const NavState: FC<PropsWithChildren> = ({children}) => {
     };
 
     function toggleUserMenuMode() {
-        setUserMenu(!isUserMenuOpen);
+        if (isUserAuth)
+            setAuthorizedUserMenuOpen(!isAuthorizedUserMenuOpen)
+        else
+            setUserMenu(!isUserMenuOpen);
     }
 
     return (
@@ -84,7 +100,11 @@ const NavState: FC<PropsWithChildren> = ({children}) => {
             handleRegisterClick,
             handleRegisterClose,
             showRegisterModal,
-            setShowRegisterModal
+            setShowRegisterModal,
+            setAuthorizedUserMenuOpen,
+            isAuthorizedUserMenuOpen,
+            isUserAuth,
+            setUserAuth
         }}>{children}</MenuContext.Provider>
     );
 };

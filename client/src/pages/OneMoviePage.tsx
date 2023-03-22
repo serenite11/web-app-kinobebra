@@ -152,15 +152,15 @@ const OneMoviePage: FC = () => {
                                 {movie.creationYear.toString()}
                             </MovieCreationYear>
                             <MovieTags>
-                                {movie.genre.map((tag) => (
-                                    <div>{tag}</div>
+                                {movie.genre.map((tag,index) => (
+                                    <div key={index}>{tag}</div>
                                 ))}
                             </MovieTags>
                             <MovieProducer>
                                 {movie.producersId.length < 2 ? 'Продюсер' : 'Продюсеры'}
                                 <MovieProducerList>
                                     {movieProducers.map(producer => (
-                                        <MovieProducerInfoContainer>
+                                        <MovieProducerInfoContainer key={producer.id}>
                                             <MovieProducerInfo>
                                                 <MovieProducerImg src={producer.imageUrl}/>
                                             </MovieProducerInfo>

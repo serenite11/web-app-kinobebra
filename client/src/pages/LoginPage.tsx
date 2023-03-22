@@ -3,6 +3,22 @@ import styled, {css} from "styled-components";
 import CloseIcon from '@mui/icons-material/Close';
 import ColorInput, {InputType} from "../components/Input";
 import Button from "../components/Button";
+import {useForm} from "react-hook-form";
+
+interface ModalProps {
+    show: boolean;
+}
+
+interface ILoginPageProps {
+    modalContentRef: React.RefObject<HTMLDivElement>
+    loginButtonRef: React.RefObject<HTMLDivElement>
+    handleLoginClose: () => void;
+    showModal: boolean;
+    setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+    setUserAuth: React.Dispatch<React.SetStateAction<boolean>>;
+
+
+}
 
 const PageTitle = styled.div`
   margin-bottom: 10px;
@@ -28,20 +44,6 @@ const LoginWrapper = styled.div`
   }
   
 `
-
-interface ModalProps {
-    show: boolean;
-}
-
-interface ILoginPageProps {
-    modalContentRef: React.RefObject<HTMLDivElement>
-    loginButtonRef: React.RefObject<HTMLDivElement>
-    handleLoginClose: () => void;
-    showModal: boolean;
-    setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
-
-
-}
 
 const Modal = styled.div<ModalProps>`
   overflow: hidden;
@@ -70,7 +72,7 @@ const Modal = styled.div<ModalProps>`
     left: 0;
     width: 100%;
     height: 100%;
-    transform: translateY(100%);
+    transform: translateY(150%);
   }
 
   ${props =>
@@ -133,10 +135,10 @@ const LoginPage: FC<ILoginPageProps> = ({
                                             modalContentRef,
                                             showModal,
                                             setShowModal,
-                                            loginButtonRef
+                                            loginButtonRef,
+                                            setUserAuth
                                         }) => {
     const handleCloseModal = (event: MouseEvent) => {
-        // Close the modal if the click is outside of the modal content element
         if (modalContentRef.current &&
             !modalContentRef.current.contains(event.target as Node) &&
             loginButtonRef.current &&
@@ -144,16 +146,25 @@ const LoginPage: FC<ILoginPageProps> = ({
             setShowModal(false);
         }
     };
-
     useEffect(() => {
-        // Add a click event listener to the document to close the modal when the user clicks outside of it
         document.addEventListener('click', handleCloseModal);
-
         return () => {
-            // Remove the click event listener when the component unmounts
             document.removeEventListener('click', handleCloseModal);
         };
     }, []);
+
+    const {
+        register,
+        formState: {
+            errors
+        },
+        handleSubmit
+    } = useForm()
+
+    const onSubmit = (data: object) => {
+        setUserAuth(true)
+        setShowModal(false)
+    }
 
     return (
         <>
@@ -162,14 +173,17 @@ const LoginPage: FC<ILoginPageProps> = ({
                     <LoginWrapper>
                         <CloseIcon className={'closeModalIcon'} onClick={handleLoginClose}/>
                         <PageTitle>Авторизация</PageTitle>
-                        <ColorInput type={InputType.Email} label={'Почта'}/>
-                        <ColorInput type={InputType.Password} label={'Пароль'}/>
-                        <div>
-                            <a>Забыли пароль</a>
-                        </div>
-                        <Button>
-                            Вход
-                        </Button>
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                            <ColorInput {...register('email')} type={InputType.Email} label={'Email'} id={'email'}/>
+                            <ColorInput {...register('password')} type={InputType.Password} label={'Password'}
+                                        id={'password'}/>
+                            <div>
+                                <a>Забыли пароль?</a>
+                            </div>
+                            <Button>
+                                Вход
+                            </Button>
+                        </form>
                     </LoginWrapper>
                 </ModalContent>
             </Modal>

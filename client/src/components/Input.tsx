@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {ForwardedRef, forwardRef, useState} from 'react';
 import '../index.css'
 
 export enum InputType {
@@ -7,11 +7,13 @@ export enum InputType {
     Password = "password",
     Checkbox = "checkbox"
 }
-interface IInputProps{
-    type : InputType;
+interface IInputProps {
+    type: InputType;
     label?: string;
+    id: string,
+
 }
-const ColorInput = ({type, label} : IInputProps) => {
+const ColorInput = forwardRef((props: IInputProps, ref: ForwardedRef<HTMLInputElement>) => {
     const [isFocused, setIsFocused] = useState(false);
     const handleFocus = () => {
         setIsFocused(true);
@@ -20,18 +22,18 @@ const ColorInput = ({type, label} : IInputProps) => {
         setIsFocused(false);
     };
 
+
     return (
-        <div className={`input-wrapper ${isFocused ? 'input-focused' : ''} ${type === 'checkbox' ? 'flex-wrapper' : ''}`
-        }>
-            <label htmlFor="color-input">{label}</label>
+        <div className={`input-wrapper ${isFocused ? 'input-focused' : ''} ${props.type === 'checkbox' ? 'flex-wrapper' : ''}`}>
+            <label htmlFor={props.id}>{props.label}</label>
             <input
-                id="color-input"
-                type={type}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
+                {...props}
+                ref={ref}
             />
         </div>
-    );
-};
+    )
+})
 
 export default ColorInput;

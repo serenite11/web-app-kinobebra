@@ -14,7 +14,7 @@ const MainPage = styled.main`
   color: white;
   margin-top: 1rem;
 `
-const TrendTitle = styled.div`
+const CategoryTitle = styled.div`
   font-size: 48px;
 
   @media ${props => props.theme.media.phone} {
@@ -26,13 +26,13 @@ const TrendTitle = styled.div`
 const Home: FC<PropsWithChildren<HomePageProps>> = (props, {children}) => {
     return (
         <MainPage {...props}>
-            <TrendTitle>
+            <CategoryTitle>
                 ПОПУЛЯРНО СЕЙЧАС
-            </TrendTitle>
+            </CategoryTitle>
             <MovieList/>
-            <TrendTitle>
+            <CategoryTitle>
                 ПЛОТНЫЕ БОЕВИКИ
-            </TrendTitle>
+            </CategoryTitle>
             <MovieList/>
         </MainPage>
     );

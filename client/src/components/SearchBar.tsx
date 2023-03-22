@@ -5,7 +5,7 @@ import React, {useContext} from 'react';
 import SearchIcon from "@mui/icons-material/Search";
 import {Link} from "react-router-dom";
 import {MenuContext} from "../context/navState";
-import {UserMenu} from "./UserMenu";
+import {UnauthorizedUserMenu} from "./UnauthorizedUserMenu";
 
 interface ISearchBarProps {
     inputRef: React.RefObject<HTMLInputElement>;
@@ -13,6 +13,7 @@ interface ISearchBarProps {
     registerButtonRef: React.RefObject<HTMLDivElement>
     handleLoginClick: () => void;
     handleRegisterClick: () => void;
+    isUserAuth: boolean;
 }
 
 
@@ -56,7 +57,14 @@ export const StyledInputBase = muiStyled(InputBase)(({theme}) => ({
     },
 }));
 
-const SearchBar = ({inputRef, loginButtonRef, handleLoginClick,registerButtonRef,handleRegisterClick}: ISearchBarProps) => {
+const SearchBar = ({
+                       inputRef,
+                       loginButtonRef,
+                       handleLoginClick,
+                       registerButtonRef,
+                       handleRegisterClick,
+                       isUserAuth
+                   }: ISearchBarProps) => {
     const {isUserMenuOpen, toggleUserMenuMode} = useContext(MenuContext)
     return (
         <Search className={'search'}>
@@ -68,22 +76,24 @@ const SearchBar = ({inputRef, loginButtonRef, handleLoginClick,registerButtonRef
                 inputProps={{'aria-label': 'search'}}
             />
             <div ref={inputRef}>
-                <UserMenu open={isUserMenuOpen} className={'userMenu'}>
-                    <div onClick={() => {
-                        handleLoginClick()
-                        toggleUserMenuMode()
-                    }
-                    }
-                         ref={loginButtonRef}>Авторизация
-                    </div>
-                    <div onClick={() => {
-                        handleRegisterClick()
-                        toggleUserMenuMode()
-                    }
-                    }
-                         ref={registerButtonRef}>Регистрация
-                    </div>
-                </UserMenu>
+                {!isUserAuth &&
+                    <UnauthorizedUserMenu open={isUserMenuOpen} className={'userMenu'}>
+                        <div onClick={() => {
+                            handleLoginClick()
+                            toggleUserMenuMode()
+                        }
+                        }
+                             ref={loginButtonRef}>Авторизация
+                        </div>
+                        <div onClick={() => {
+                            handleRegisterClick()
+                            toggleUserMenuMode()
+                        }
+                        }
+                             ref={registerButtonRef}>Регистрация
+                        </div>
+                    </UnauthorizedUserMenu>
+                }
             </div>
         </Search>
     );

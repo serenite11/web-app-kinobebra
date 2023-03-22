@@ -11,7 +11,7 @@ const ButtonStyled = styled.button`
   cursor: pointer;
   outline: none;
   margin-top: 10px;
-
+  color: black;
   &::before {
     content: '';
     position: absolute;
