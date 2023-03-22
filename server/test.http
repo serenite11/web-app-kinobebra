@@ -1,3 +1,0 @@
-GET https://api.kinopoisk.dev/v1/movie/{movie_id}
-  -H 'accept: application/json' \
-  -H 'X-API-KEY: 8H76VPP-JPX49ZP-Q08DA69-X1RPA8N'
