@@ -37,7 +37,8 @@ CREATE TABLE directors
 
 CREATE TABLE favorites
 (
-    user_id int references users (id) on delete cascade not null
+    user_id int references users (id) on delete cascade not null,
+    favorites_films integer[]
 );
 
 CREATE TABLE films_actors
@@ -50,4 +51,3 @@ CREATE TABLE films_directors
     film_id     int references films (id) on delete cascade,
     director_id int references directors (id) on delete cascade
 );
-

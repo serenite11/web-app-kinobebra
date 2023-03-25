@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/joho/godotenv"
+	_ "github.com/lib/pq"
 	server "github.com/serenite11/web-app-kinobebra"
 	"github.com/serenite11/web-app-kinobebra/pkg/handler"
 	"github.com/serenite11/web-app-kinobebra/pkg/repository"

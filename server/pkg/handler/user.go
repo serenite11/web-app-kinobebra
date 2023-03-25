@@ -6,4 +6,6 @@ type User struct {
 	Login       string `json:"login"`
 	Email       string `json:"email"`
 	DateOfBirth string `json:"date-of-birth"`
+	ImageUrl    string `json:"imageUrl"`
+	Agree       bool
 }
