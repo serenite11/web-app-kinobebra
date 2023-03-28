@@ -2,7 +2,7 @@ package handler
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/serenite11/web-app-kinobebra/pkg/service"
+	"github.com/serenite11/web-app-kinobebra/server/pkg/service"
 )
 
 type Handler struct {
@@ -17,18 +17,18 @@ func (h *Handler) InitRoutes() *gin.Engine {
 	router := gin.New()
 	auth := router.Group("/auth")
 	{
-		auth.POST("sign-up", h.signUp)
-		auth.GET("sign-in", h.signIn)
+		auth.POST("/sign-up", h.signUp)
+		auth.GET("/sign-in", h.signIn)
 	}
 	api := router.Group("/api")
 	{
 		films := api.Group("films")
 		{
-			films.POST("/", h.addFilm)
-			films.GET("/", h.getAllFilms)
-			films.GET("/:id", h.getFilmById)
-			films.PUT("/:id", h.updateFilm)
-			films.DELETE("/:id", h.deleteFilm)
+			films.POST("/", nil)
+			films.GET("/", nil)
+			films.GET("/:id", nil)
+			films.PUT("/:id", nil)
+			films.DELETE("/:id", nil)
 		}
 	}
 	return router

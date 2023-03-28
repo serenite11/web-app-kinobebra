@@ -1,8 +1,12 @@
 package service
 
-import "github.com/serenite11/web-app-kinobebra/pkg/repository"
+import (
+	"github.com/serenite11/web-app-kinobebra/server"
+	"github.com/serenite11/web-app-kinobebra/server/pkg/repository"
+)
 
 type Authorization interface {
+	CreateUser(user server.User) (int, error)
 }
 
 type Service struct {
@@ -10,5 +14,7 @@ type Service struct {
 }
 
 func NewService(repos *repository.Repository) *Service {
-	return &Service{}
+	return &Service{
+		Authorization: NewAuthService(repos.Authorization),
+	}
 }

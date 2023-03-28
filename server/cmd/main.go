@@ -3,21 +3,22 @@ package main
 import (
 	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
-	server "github.com/serenite11/web-app-kinobebra"
-	"github.com/serenite11/web-app-kinobebra/pkg/handler"
-	"github.com/serenite11/web-app-kinobebra/pkg/repository"
-	"github.com/serenite11/web-app-kinobebra/pkg/service"
+	"github.com/serenite11/web-app-kinobebra/server"
+	"github.com/serenite11/web-app-kinobebra/server/pkg/handler"
+	"github.com/serenite11/web-app-kinobebra/server/pkg/repository"
+	"github.com/serenite11/web-app-kinobebra/server/pkg/service"
+	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
-	"log"
 	"os"
 )
 
 func main() {
+	logrus.SetFormatter(new(logrus.JSONFormatter))
 	if err := initConfig(); err != nil {
-		log.Fatalf("error initializing configs: %s", err.Error())
+		logrus.Fatalf("error initializing configs: %s", err.Error())
 	}
 	if err := godotenv.Load(); err != nil {
-		log.Fatalf("haven't file env:%s", err.Error())
+		logrus.Fatalf("haven't file env:%s", err.Error())
 	}
 
 	db, err := repository.NewPostgresDB(repository.Config{
@@ -29,7 +30,7 @@ func main() {
 		SSLMode:  viper.GetString("db.sslmode"),
 	})
 	if err != nil {
-		log.Fatalf("failed to initializating DB:%s", err.Error())
+		logrus.Fatalf("failed to initializating DB:%s", err.Error())
 	}
 	repos := repository.NewRepository(db)
 	services := service.NewService(repos)
@@ -37,7 +38,7 @@ func main() {
 
 	srv := new(server.Server)
 	if err := srv.Run(viper.GetString("port"), handlers.InitRoutes()); err != nil {
-		log.Fatalf("error: %s", err.Error())
+		logrus.Fatalf("error: %s", err.Error())
 	}
 }
 

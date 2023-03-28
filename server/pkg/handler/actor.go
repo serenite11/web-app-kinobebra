@@ -1,6 +1,8 @@
 package handler
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+)
 
 type Actor struct {
 	Id       string `json:"id"`
@@ -17,12 +19,12 @@ func (h *Handler) addActor(c *gin.Context) {
 
 }
 
-func (h *Handler) getActorById(c *gin.Context) {
+func getActorById(c *gin.Context) {
 
 }
-func (h *Handler) updateActor(c *gin.Context) {
+func updateActor(c *gin.Context) {
 
 }
-func (h *Handler) deleteActor(c *gin.Context) {
+func deleteActor(c *gin.Context) {
 
 }

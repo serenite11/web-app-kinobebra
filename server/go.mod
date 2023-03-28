@@ -1,11 +1,13 @@
-module github.com/serenite11/web-app-kinobebra
+module github.com/serenite11/web-app-kinobebra/server
 
 go 1.18
 
 require (
 	github.com/gin-gonic/gin v1.9.0
+	github.com/jmoiron/sqlx v1.3.5
 	github.com/joho/godotenv v1.5.1
 	github.com/lib/pq v1.10.7
+	github.com/sirupsen/logrus v1.9.0
 	github.com/spf13/viper v1.15.0
 )
 
@@ -19,7 +21,6 @@ require (
 	github.com/go-playground/validator/v10 v10.11.2 // indirect
 	github.com/goccy/go-json v0.10.1 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
-	github.com/jmoiron/sqlx v1.3.5 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/klauspost/cpuid/v2 v2.2.4 // indirect
 	github.com/leodido/go-urn v1.2.2 // indirect
