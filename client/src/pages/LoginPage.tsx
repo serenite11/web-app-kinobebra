@@ -34,7 +34,7 @@ const LoginWrapper = styled.div`
   border-radius: 25px;
   border: 1px solid white;
   text-align: center;
-  background-color: #294421;
+  background-color: ${props => props.color || props.theme.colors.primary};
   position: relative;
 
   @media only screen and (max-width: 600px) {
@@ -46,7 +46,6 @@ const LoginWrapper = styled.div`
 `
 
 const Modal = styled.div<ModalProps>`
-  overflow: hidden;
   position: fixed;
   top: 0;
   left: 0;
@@ -63,6 +62,7 @@ const Modal = styled.div<ModalProps>`
             transform: translateY(0);
             opacity: 1;
             z-index: 1;
+
           `
   };
 
@@ -79,9 +79,10 @@ const Modal = styled.div<ModalProps>`
           props.show && 
           css`
             @media only screen and (max-width: 600px) {
-            transform: translateY(0);
-            opacity: 1;
-            z-index: 1;
+              transform: translateY(0);
+              opacity: 1;
+              z-index: 1;
+
             }
           `
 };
@@ -97,7 +98,6 @@ const ModalContent = styled.div`
   @media only screen and (max-width: 600px) {
     width: 100%;
     height: 100%;
-    overflow-y: auto;
   }
 `;
 
@@ -146,12 +146,32 @@ const LoginPage: FC<ILoginPageProps> = ({
             setShowModal(false);
         }
     };
+
+
     useEffect(() => {
+        if (showModal){
+            let modal = document.querySelector('.modal')
+            if (modal)
+                (modal as HTMLElement).style.height = `${window.innerHeight}px`;
+            document.body.style.overflow = "hidden";
+            if (window.innerWidth > 800) {
+                document.body.style.paddingRight = `16px`;
+            }
+            window.addEventListener('resize', () => {
+                if (modal) {
+                    (modal as HTMLElement).style.height = `${window.innerHeight}px`;
+                }
+            });
+
+        }
         document.addEventListener('click', handleCloseModal);
         return () => {
+            // document.removeEventListener('resize')
             document.removeEventListener('click', handleCloseModal);
+            document.body.style.overflow = "";
+            document.body.style.paddingRight = "";
         };
-    }, []);
+    }, [showModal]);
 
     const {
         register,
@@ -168,7 +188,7 @@ const LoginPage: FC<ILoginPageProps> = ({
 
     return (
         <>
-            <Modal show={showModal}>
+            <Modal className={'modal'} show={showModal}>
                 <ModalContent ref={modalContentRef}>
                     <LoginWrapper>
                         <CloseIcon className={'closeModalIcon'} onClick={handleLoginClose}/>

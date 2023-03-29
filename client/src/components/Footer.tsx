@@ -52,7 +52,7 @@ const Footer = () => {
                 <a>Донаты на пивко</a>
                 <a>Разоблачение Азлагора</a>
             </LinkBlock>
-            <div style={{marginTop: '10px'}}>v0.1.8</div>
+            <div style={{marginTop: '10px'}}>v0.1.9.1</div>
         </FooterBlock>
     );
 };

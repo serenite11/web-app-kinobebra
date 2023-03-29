@@ -19,7 +19,7 @@ const LoginWrapper = styled.div`
   border-radius: 25px;
   border: 1px solid white;
   text-align: center;
-  background-color: #294421;
+  background-color: ${props => props.color || props.theme.colors.primary};
   position: relative;
 
   @media only screen and (max-width: 600px) {
@@ -45,7 +45,6 @@ interface IRegisterPageProps {
 }
 
 const Modal = styled.div<ModalProps>`
-  overflow: hidden;
   position: fixed;
   top: 0;
   left: 0;
@@ -146,12 +145,19 @@ const RegisterPage: FC<IRegisterPageProps> = ({
     };
 
     useEffect(() => {
+        if (showModal){
+            document.body.style.overflow = "hidden";
+            if (window.innerWidth > 800) {
+                document.body.style.paddingRight = `16px`;
+            }
+        }
         document.addEventListener('click', handleCloseModal);
         return () => {
-            // Remove the click event listener when the component unmounts
             document.removeEventListener('click', handleCloseModal);
+            document.body.style.overflow = "";
+            document.body.style.paddingRight = "";
         };
-    }, []);
+    }, [showModal]);
 
     const {
         register,

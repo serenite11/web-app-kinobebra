@@ -63,7 +63,7 @@ const Bar = styled.span`
 `;
 
 const HamburgerButton = () => {
-    const { isMenuOpen, toggleMenuMode } = useContext(MenuContext);
+    const { isNavbarMenuOpen, toggleMenuMode } = useContext(MenuContext);
 
     const clickHandler = () => {
             toggleMenuMode()
@@ -71,7 +71,7 @@ const HamburgerButton = () => {
 
     return (
         <MenuButton
-            className={isMenuOpen ? 'active' : ''}
+            className={isNavbarMenuOpen ? 'active' : ''}
             aria-label="Открыть главное меню"
             onClick={clickHandler}
         >

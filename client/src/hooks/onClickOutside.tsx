@@ -44,4 +44,27 @@ const useOnClickOutsideForMenu =
         }, [userMenuRef, handler]);
     };
 
-export {useOnClickOutside, useOnClickOutsideForMenu};
+const useOnClickOutsideForAuthorizedMenu =
+    (
+        authorizedUserMenu: RefObject<HTMLDivElement>,
+        userMenuButtonRef: RefObject<HTMLDivElement>,
+        handler: (event: { target: any }) => void,
+    ) => {
+        useEffect(() => {
+            const listener = (event: { target: any; }) => {
+                if (!authorizedUserMenu.current
+                    || authorizedUserMenu.current.contains(event.target)
+                    || !userMenuButtonRef.current
+                    || userMenuButtonRef.current.contains(event.target)) {
+                    return;
+                }
+                handler(event);
+            };
+            document.addEventListener('mousedown', listener);
+            return () => {
+                document.removeEventListener('mousedown', listener);
+            };
+        }, [authorizedUserMenu, handler]);
+    };
+
+export {useOnClickOutside, useOnClickOutsideForMenu, useOnClickOutsideForAuthorizedMenu};

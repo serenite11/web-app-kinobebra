@@ -66,11 +66,11 @@ export const MenuLink = styled.div`
 
 export const SideMenu:FC = () => {
 
-    const {isMenuOpen, toggleMenuMode} = useContext(MenuContext);
+    const {isNavbarMenuOpen, toggleMenuMode} = useContext(MenuContext);
     const handleCloseMenu = () => {
         toggleMenuMode()
     }
-    return <Menu open={isMenuOpen}>
+    return <Menu open={isNavbarMenuOpen}>
         <NavLink onClick = {handleCloseMenu} to={'/'}><MenuLink>Главная</MenuLink></NavLink>
         <NavLink onClick = {handleCloseMenu} to={'/news'}><MenuLink>Новинки</MenuLink></NavLink>
         <NavLink onClick = {handleCloseMenu} to={'/movies'}><MenuLink>Фильмы</MenuLink></NavLink>

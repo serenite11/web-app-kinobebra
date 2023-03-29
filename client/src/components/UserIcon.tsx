@@ -21,9 +21,9 @@ const UserButton = styled.div`
 `
 
 const UserIcon = () => {
-    const {toggleUserMenuMode} = useContext(MenuContext)
+    const {toggleUnauthorizedUserMenuMode} = useContext(MenuContext)
     const clickHandler = () => {
-        toggleUserMenuMode()
+        toggleUnauthorizedUserMenuMode()
     };
 
     return (

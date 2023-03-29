@@ -54,7 +54,7 @@ header {
 }
 
 .inactive {
-    color: gray;
+    color: #cccccc;
 }
 
 @media (max-width: 900px) {
@@ -154,7 +154,6 @@ header {
 
 @media (max-width: 850px) {
     .userMenu {
-        background-color: #294421 !important;
         border: 1px solid;
     }
 }

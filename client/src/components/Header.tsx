@@ -6,9 +6,9 @@ import {Container} from "@mui/material";
 import {MenuContext} from "../context/navState";
 import HamburgerButton from "./HamburgerButton";
 import {SideMenu} from "./SideBar";
-import {useOnClickOutside, useOnClickOutsideForMenu} from "../hooks/onClickOutside";
+import {useOnClickOutside, useOnClickOutsideForAuthorizedMenu, useOnClickOutsideForMenu} from "../hooks/onClickOutside";
 import bebraLogo from "../bebra.png"
-import {NavLink} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import SearchBar from "./SearchBar";
 import {Logo} from "./Logo";
 import UserIcon from "./UserIcon";
@@ -27,12 +27,11 @@ const Header = () => {
     const loginButtonRef = useRef<HTMLDivElement>(null);
     const registerModalContentRef = useRef<HTMLDivElement>(null);
     const registerButtonRef = useRef<HTMLDivElement>(null);
-
+    const authorizedUserMenuRef = useRef<HTMLDivElement>(null);
     const {
-        isMenuOpen,
+        isNavbarMenuOpen,
         toggleMenuMode,
-        isUserMenuOpen,
-        toggleUserMenuMode,
+        toggleUnauthorizedUserMenuMode,
         showModal,
         handleLoginClick,
         setShowModal,
@@ -42,20 +41,28 @@ const Header = () => {
         showRegisterModal,
         setShowRegisterModal,
         isUserAuth,
+        setUserAuth,
+        isUnauthorizedUserMenuOpen,
+        setUnauthorizedUserMenuOpen,
         isAuthorizedUserMenuOpen,
-        setAuthorizedUserMenuOpen,
-        setUserAuth
+        setAuthorizedUserMenuOpen
     } = useContext(MenuContext);
 
     useOnClickOutside(node, menuButtonRef, () => {
-        if (isMenuOpen) {
+        if (isNavbarMenuOpen) {
             toggleMenuMode();
         }
     });
 
     useOnClickOutsideForMenu(userMenuRef, userMenuButtonRef, () => {
-        if (isUserMenuOpen) {
-            toggleUserMenuMode();
+        if (isUnauthorizedUserMenuOpen) {
+            toggleUnauthorizedUserMenuMode();
+        }
+    })
+
+    useOnClickOutsideForAuthorizedMenu(authorizedUserMenuRef, userMenuButtonRef, () => {
+        if (isAuthorizedUserMenuOpen) {
+            toggleUnauthorizedUserMenuMode();
         }
     })
 
@@ -82,7 +89,7 @@ const Header = () => {
                                 <NavLink to={'/series'}
                                          className={({isActive}) => (isActive ? 'active' : 'inactive')}>Сериалы</NavLink>
                             </div>
-                            {isUserAuth && <FavoriteListIcon/>}
+                            {isUserAuth && <Link to={'/favorites'}><FavoriteListIcon/></Link>}
                             <SearchBar
                                 inputRef={userMenuRef}
                                 loginButtonRef={loginButtonRef}
@@ -96,9 +103,12 @@ const Header = () => {
                             </div>
                         </Toolbar>
                         {isUserAuth ?
-                            <AuthorizedUserMenu open={isAuthorizedUserMenuOpen}
-                                                setUserAuth = {setUserAuth}
-                                                setAuthorizedUserMenuOpen={setAuthorizedUserMenuOpen}/>
+                            <div ref = {authorizedUserMenuRef}>
+                                <AuthorizedUserMenu open={isAuthorizedUserMenuOpen}
+                                                    setUserAuth={setUserAuth}
+                                                    setAuthorizedUserMenuOpen={setAuthorizedUserMenuOpen
+                                }/>
+                            </div>
                             : <>
                                 <LoginPage
                                     handleLoginClose={handleLoginClose}
