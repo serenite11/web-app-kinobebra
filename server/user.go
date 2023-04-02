@@ -1,11 +1,11 @@
 package server
 
 type User struct {
-	Id          int    `json:"id"`
+	Id          int    `json:"-" db:"id"`
 	Name        string `json:"name"`
 	LastName    string `json:"lastname"`
 	Login       string `json:"login"`
-	Password    string `json:"password_hash"`
+	Password    string `json:"password"`
 	Email       string `json:"email"`
 	DateOfBirth string `json:"birthday"`
 	ImageUrl    string `json:"image"`

@@ -18,13 +18,13 @@ func (h *Handler) InitRoutes() *gin.Engine {
 	auth := router.Group("/auth")
 	{
 		auth.POST("/sign-up", h.signUp)
-		auth.GET("/sign-in", h.signIn)
+		auth.POST("/sign-in", h.signIn)
 	}
-	api := router.Group("/api")
+	api := router.Group("/api", h.userIdentity)
 	{
-		films := api.Group("films")
+		films := api.Group("/films")
 		{
-			films.POST("/", nil)
+			films.POST("/", h.addFilm)
 			films.GET("/", nil)
 			films.GET("/:id", nil)
 			films.PUT("/:id", nil)

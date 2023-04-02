@@ -2,6 +2,7 @@ package handler
 
 import (
 	"github.com/gin-gonic/gin"
+	"net/http"
 )
 
 type Film struct {
@@ -11,21 +12,25 @@ type Film struct {
 	Rating      float32 `json:"rating"`
 }
 
-func getAllFilms(c *gin.Context) {
+func (h *Handler) getAllFilms(c *gin.Context) {
 
 }
 
 //
-func addFilm(c *gin.Context) {
+func (h *Handler) addFilm(c *gin.Context) {
+	id, _ := c.Get(userCtx)
+	c.JSONP(http.StatusOK, map[string]interface{}{
+		"id": id,
+	})
 
 }
 
-func getFilmById(c *gin.Context) {
+func (h *Handler) getFilmById(c *gin.Context) {
 
 }
-func updateFilm(c *gin.Context) {
+func (h *Handler) updateFilm(c *gin.Context) {
 
 }
-func deleteFilm(c *gin.Context) {
+func (h *Handler) deleteFilm(c *gin.Context) {
 
 }
