@@ -24,11 +24,11 @@ func (h *Handler) InitRoutes() *gin.Engine {
 	{
 		films := api.Group("/films")
 		{
-			films.POST("/", h.addFilm)
-			films.GET("/", nil)
-			films.GET("/:id", nil)
-			films.PUT("/:id", nil)
-			films.DELETE("/:id", nil)
+			films.POST("/", h.AddFilm)
+			films.GET("/", h.GetAllFilms)
+			films.GET("/:id", h.GetFilmById)
+			films.PUT("/:id", h.UpdateFilm)
+			films.DELETE("/:id", h.DeleteFilm)
 		}
 	}
 	return router
