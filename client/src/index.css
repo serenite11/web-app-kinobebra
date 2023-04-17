@@ -217,6 +217,7 @@ input {
     padding: 10px;
     outline: none;
     transition: 0.3s all ease-in-out;
+    color: black;
 }
 
 .input-focused input {

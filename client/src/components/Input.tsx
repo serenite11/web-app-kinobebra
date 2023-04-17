@@ -16,9 +16,11 @@ interface IInputProps {
 const ColorInput = forwardRef((props: IInputProps, ref: ForwardedRef<HTMLInputElement>) => {
     const [isFocused, setIsFocused] = useState(false);
     const handleFocus = () => {
+        console.log('произошел Фокус')
         setIsFocused(true);
     };
     const handleBlur = () => {
+        console.log("Blur event fired");
         setIsFocused(false);
     };
 

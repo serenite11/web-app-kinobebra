@@ -14,11 +14,13 @@ const Movie = styled.div`
     width: 75%;
     height: 500px;
   }
+
   &:hover {
     & img {
       transform: translateY(-5px);
       transition: all 0.25s ease-in-out;
     }
+
     cursor: pointer;
   }
 
@@ -42,21 +44,19 @@ const AdditionalInfo = styled.div`
 `
 
 
-
-
 const MovieListItem: FC<IMovieInfo> = (props) => {
-    return (
-        <NavLink to={`/${props.id}`} className={'movieLink'}>
-            <Movie>
-                <Poster src={props.posterUrl}/>
-                <Title>{props.name}</Title>
-                <AdditionalInfo>
-                    <div>{props.creationYear.toString()}</div>
-                    <div>{props.rating.toString()}</div>
-                </AdditionalInfo>
-            </Movie>
-        </NavLink>
-    );
+  return (
+    <Movie>
+      <NavLink to={`/${props.id}`} className={'movieLink'}>
+        <Poster src={props.posterUrl}/>
+        <Title>{props.name}</Title>
+        <AdditionalInfo>
+          <div>{props.creationYear.toString()}</div>
+          <div>{props.rating.toString()}</div>
+        </AdditionalInfo>
+      </NavLink>
+    </Movie>
+  );
 };
 
 export default MovieListItem;
