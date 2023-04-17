@@ -1,4 +1,4 @@
-package server
+package models
 
 type User struct {
 	Id          int    `json:"-" db:"id"`
@@ -8,6 +8,6 @@ type User struct {
 	Password    string `json:"password"`
 	Email       string `json:"email"`
 	DateOfBirth string `json:"birthday"`
-	ImageUrl    string `json:"image"`
+	Image       string `json:"image"`
 	Agree       bool   `json:"agree"`
 }

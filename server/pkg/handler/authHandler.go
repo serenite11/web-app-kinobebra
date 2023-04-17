@@ -2,12 +2,12 @@ package handler
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/serenite11/web-app-kinobebra/server"
+	"github.com/serenite11/web-app-kinobebra/server/models"
 	"net/http"
 )
 
 func (h *Handler) signUp(c *gin.Context) {
-	var input server.User
+	var input models.User
 	if err := c.BindJSON(&input); err != nil {
 		newErrorResponse(c, http.StatusBadRequest, err.Error())
 		return

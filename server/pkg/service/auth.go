@@ -5,7 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/golang-jwt/jwt/v5"
-	. "github.com/serenite11/web-app-kinobebra/server"
+	. "github.com/serenite11/web-app-kinobebra/server/models"
 	"github.com/serenite11/web-app-kinobebra/server/pkg/repository"
 	"time"
 )

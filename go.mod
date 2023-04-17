@@ -1,4 +1,4 @@
-module github.com/serenite11/web-app-kinobebra/server
+module github.com/serenite11/web-app-kinobebra
 
 go 1.18
 

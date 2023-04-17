@@ -1,8 +1,8 @@
-package handler
+package models
 
 type Director struct {
-	Id       string `json:"id"`
+	Id       int    `json:"id"`
 	Name     string `json:"name"`
 	LastName string `json:"last_name"`
+	Image    string `json:"image"`
 }
-

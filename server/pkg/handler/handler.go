@@ -20,7 +20,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 		auth.POST("/sign-up", h.signUp)
 		auth.POST("/sign-in", h.signIn)
 	}
-	api := router.Group("/api", h.userIdentity)
+	api := router.Group("/api")
 	{
 		films := api.Group("/films")
 		{
@@ -29,6 +29,11 @@ func (h *Handler) InitRoutes() *gin.Engine {
 			films.GET("/:id", h.GetFilmById)
 			films.PUT("/:id", h.UpdateFilm)
 			films.DELETE("/:id", h.DeleteFilm)
+		}
+		actors := api.Group("/actors")
+		{
+			actors.GET("/", h.GetAllActors)
+			actors.GET("/:id", h.GetActorById)
 		}
 	}
 	return router
