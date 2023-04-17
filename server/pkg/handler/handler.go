@@ -1,26 +1,39 @@
 package handler
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+	"github.com/serenite11/web-app-kinobebra/server/pkg/service"
+)
 
 type Handler struct {
+	services *service.Service
+}
+
+func NewHandler(service *service.Service) *Handler {
+	return &Handler{services: service}
 }
 
 func (h *Handler) InitRoutes() *gin.Engine {
 	router := gin.New()
 	auth := router.Group("/auth")
 	{
-		auth.POST("sign-up", h.signUp)
-		auth.GET("sign-in", h.signIn)
+		auth.POST("/sign-up", h.signUp)
+		auth.POST("/sign-in", h.signIn)
 	}
 	api := router.Group("/api")
 	{
-		films := api.Group("films")
+		films := api.Group("/films")
 		{
-			films.POST("/", h.addFilm)
-			films.GET("/", h.getAllFilms)
-			films.GET("/:id", h.getFilmById)
-			films.PUT("/:id", h.updateFilm)
-			films.DELETE("/:id", h.deleteFilm)
+			films.POST("/", h.AddFilm)
+			films.GET("/", h.GetAllFilms)
+			films.GET("/:id", h.GetFilmById)
+			films.PUT("/:id", h.UpdateFilm)
+			films.DELETE("/:id", h.DeleteFilm)
+		}
+		actors := api.Group("/actors")
+		{
+			actors.GET("/", h.GetAllActors)
+			actors.GET("/:id", h.GetActorById)
 		}
 	}
 	return router
