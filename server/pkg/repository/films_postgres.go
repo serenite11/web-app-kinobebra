@@ -42,11 +42,7 @@ func (r *FilmsPostgres) GetFilmById(filmId int) (models.Film, error) {
 func (r *FilmsPostgres) UpdateFilm() {
 
 }
+
 func (r *FilmsPostgres) DeleteFilm() {
 
-}
-func (r *FilmsPostgres) AddToFavorites(userId, filmId int) (models.FavoritesFilms, error) {
-	var favorite models.FavoritesFilms
-	query := fmt.Sprintf("INSERT INTO %s (user_id, favorites_films) values ($1,$2)", favoritesTable)
-	row, err := r.db.QueryRow()
 }

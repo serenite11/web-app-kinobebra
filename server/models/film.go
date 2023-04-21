@@ -6,5 +6,5 @@ type Film struct {
 	Description string `json:"description" bd:"description"`
 	Rating      int    `json:"rating" bd:"rating"`
 	Year_Old    int    `json:"year_old" bd:"year_old"`
-	Image       string `json:"image"`
+	Image       string `json:"image" bd:"image"`
 }

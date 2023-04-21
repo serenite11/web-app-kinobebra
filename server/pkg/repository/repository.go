@@ -22,17 +22,30 @@ type IActorsActions interface {
 	GetActorById(actorId int) (models.Actor, error)
 	GetAllActors() ([]models.Actor, error)
 }
+type IDirectorsActions interface {
+	AddDirector(director models.Director) (int, error)
+	GetAllDirectors() ([]models.Director, error)
+	GetDirectorById(directorId int) (models.Director, error)
+}
+type IFavoritesFilms interface {
+	GetAllFavorites(userId int) ([]models.Favorites, error)
+	AddToFavorites(favorites models.Favorites) (models.Favorites, error)
+}
 
 type Repository struct {
 	Authorization
 	IFilmsActions
 	IActorsActions
+	IDirectorsActions
+	IFavoritesFilms
 }
 
 func NewRepository(db *sqlx.DB) *Repository {
 	return &Repository{
-		Authorization:  NewAuthPostgres(db),
-		IFilmsActions:  NewFilmsPostgres(db),
-		IActorsActions: NewActorsPostgres(db),
+		Authorization:     NewAuthPostgres(db),
+		IFilmsActions:     NewFilmsPostgres(db),
+		IActorsActions:    NewActorsPostgres(db),
+		IDirectorsActions: NewDirectorsPostgres(db),
+		IFavoritesFilms:   NewFavoritesPostgres(db),
 	}
 }

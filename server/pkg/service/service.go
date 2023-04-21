@@ -22,16 +22,30 @@ type IActorsActions interface {
 	GetActorById(actorId int) (models.Actor, error)
 	GetAllActors() ([]models.Actor, error)
 }
+type IDirectorsActions interface {
+	GetAllDirectors() ([]models.Director, error)
+	AddDirector(director models.Director) (int, error)
+	GetDirectorById(directorId int) (models.Director, error)
+}
+
+type IFavoritesFilms interface {
+	GetAllFavorites(userId int) ([]models.Favorites, error)
+	AddToFavorites(favorites models.Favorites) (models.Favorites, error)
+}
 type Service struct {
 	Authorization
 	IFilmsActions
 	IActorsActions
+	IDirectorsActions
+	IFavoritesFilms
 }
 
 func NewService(repos *repository.Repository) *Service {
 	return &Service{
-		Authorization:  NewAuthService(repos.Authorization),
-		IFilmsActions:  NewFilmsActionsService(repos.IFilmsActions),
-		IActorsActions: NewActorsActionsService(repos.IActorsActions),
+		Authorization:     NewAuthService(repos.Authorization),
+		IFilmsActions:     NewFilmsActionsService(repos.IFilmsActions),
+		IActorsActions:    NewActorsActionsService(repos.IActorsActions),
+		IDirectorsActions: NewDirectorsService(repos.IDirectorsActions),
+		IFavoritesFilms:   NewFavoritesService(repos.IFavoritesFilms),
 	}
 }

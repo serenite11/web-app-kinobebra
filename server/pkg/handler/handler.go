@@ -20,7 +20,15 @@ func (h *Handler) InitRoutes() *gin.Engine {
 		auth.POST("/sign-up", h.signUp)
 		auth.POST("/sign-in", h.signIn)
 	}
-	api := router.Group("/api")
+	profile := router.Group("/profile", h.userIdentity)
+	{
+		profile.GET("/", nil)
+		favorites := profile.Group("/favorites")
+		{
+			favorites.GET("/:id", h.GetAllFavorites)
+		}
+	}
+	api := router.Group("/api", h.userIdentity)
 	{
 		films := api.Group("/films")
 		{
@@ -29,6 +37,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 			films.GET("/:id", h.GetFilmById)
 			films.PUT("/:id", h.UpdateFilm)
 			films.DELETE("/:id", h.DeleteFilm)
+			films.POST("/addtofavs", h.AddToFavorites)
 		}
 		actors := api.Group("/actors")
 		{

@@ -1,8 +1,8 @@
 package models
 
 type Director struct {
-	Id       int    `json:"id"`
-	Name     string `json:"name"`
-	LastName string `json:"last_name"`
-	Image    string `json:"image"`
+	Id       int    `json:"id" db:"id"`
+	Name     string `json:"name" db:"name"`
+	LastName string `json:"last_name" db:"lastname"`
+	Image    string `json:"image" db:"image"`
 }
