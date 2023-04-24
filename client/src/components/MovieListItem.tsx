@@ -7,8 +7,6 @@ const Movie = styled.div`
   width: 243px;
   height: 426px;
   background-color: black;
-  display: flex;
-  flex-direction: column;
   border-radius: 10px;
   @media ${props => props.theme.media.phone} {
     width: 75%;
@@ -26,7 +24,9 @@ const Movie = styled.div`
 
 `
 const Poster = styled.img`
-  max-height: 80%;
+  width: 100%;
+  height: 80%;
+  object-fit: cover;
   border-radius: 10px 10px 0 0;
 `
 const Title = styled.div`
@@ -41,6 +41,7 @@ const AdditionalInfo = styled.div`
   flex-grow: 1;
   align-items: center;
   font-size: 18px;
+  width: 100%;
 `
 
 

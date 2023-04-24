@@ -98,6 +98,12 @@ header {
     transition: 0.5ms all ease-in-out;
 }
 
+.movieLink{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
 @media (max-width: 1120px) and (min-width: 801px) {
     /* CSS для первого и четвертого элемента класса stick-active */
     .slick-track .slick-slide:nth-child(3n+1) > div {
