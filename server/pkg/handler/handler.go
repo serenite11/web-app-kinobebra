@@ -22,7 +22,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 	}
 	profile := router.Group("/profile", h.userIdentity)
 	{
-		profile.GET("/", nil)
+		profile.GET("/")
 		favorites := profile.Group("/favorites")
 		{
 			favorites.GET("/:id", h.GetAllFavorites)
