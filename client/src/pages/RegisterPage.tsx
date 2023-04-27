@@ -168,7 +168,12 @@ const RegisterPage: FC<IRegisterPageProps> = ({
     } = useForm()
 
     const onSubmit = (data: object) => {
-        alert(JSON.stringify(data))
+        const request={
+            method:'POST',
+            headers:{'Content-Type': 'application/json'},
+            body:JSON.stringify(data)
+        }
+        fetch('http://localhost:8080/auth/sign-up',request).then(response=>response.json())
     }
 
     return (

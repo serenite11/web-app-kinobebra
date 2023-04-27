@@ -2,6 +2,7 @@ package handler
 
 import (
 	"github.com/gin-gonic/gin"
+	cors "github.com/rs/cors/wrapper/gin"
 	"github.com/serenite11/web-app-kinobebra/server/pkg/service"
 )
 
@@ -14,7 +15,20 @@ func NewHandler(service *service.Service) *Handler {
 }
 
 func (h *Handler) InitRoutes() *gin.Engine {
-	router := gin.New()
+	router := gin.Default()
+	router.Use(cors.New(cors.Options{
+		AllowedOrigins:         nil,
+		AllowOriginFunc:        nil,
+		AllowOriginRequestFunc: nil,
+		AllowedHeaders:         nil,
+		ExposedHeaders:         nil,
+		MaxAge:                 0,
+		AllowCredentials:       false,
+		AllowPrivateNetwork:    false,
+		OptionsPassthrough:     false,
+		OptionsSuccessStatus:   0,
+		Debug:                  true,
+	}))
 	auth := router.Group("/auth")
 	{
 		auth.POST("/sign-up", h.signUp)
