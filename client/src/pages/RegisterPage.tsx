@@ -27,7 +27,7 @@ const LoginWrapper = styled.div`
     box-sizing: border-box;
     height: 100%;
   }
-  
+
 `
 
 interface ModalProps {
@@ -74,15 +74,15 @@ const Modal = styled.div<ModalProps>`
   }
 
   ${props =>
-          props.show && 
+          props.show &&
           css`
             @media only screen and (max-width: 600px) {
-            transform: translateY(0);
-            opacity: 1;
-            z-index: 1;
+              transform: translateY(0);
+              opacity: 1;
+              z-index: 1;
             }
           `
-};
+  };
 `;
 
 const ModalContent = styled.div`
@@ -187,8 +187,11 @@ const RegisterPage: FC<IRegisterPageProps> = ({
                             <ColorInput {...register('name')} type={InputType.Text} label={'Ваше имя'} id={'name'}/>
                             <ColorInput {...register('login')} type={InputType.Text} label={'Логин'} id={'login'}/>
                             <ColorInput {...register('email')} type={InputType.Email} label={'Почта'} id={'emailReg'}/>
+                            <ColorInput {...register('date')} type={InputType.Date} label={'Дата рождения'} id={'dateOfBirth'}/>
+                            <ColorInput {...register('avatar')} type={InputType.File} label={'Фото профиля'} id={'avatarUrl'}/>
                             <ColorInput {...register('password')} type={InputType.Password} label={'Пароль'}
                                         id={'passwordReg'}/>
+
                             <ColorInput {...register('dataAgree')} type={InputType.Checkbox}
                                         label={'Согласие на обработку данных'} id={'agree'}/>
 
