@@ -5,7 +5,9 @@ export enum InputType {
     Text = "text",
     Email = "email",
     Password = "password",
-    Checkbox = "checkbox"
+    Checkbox = "checkbox",
+    Date="date",
+    File="file",
 }
 interface IInputProps {
     type: InputType;

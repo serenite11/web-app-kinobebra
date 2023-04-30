@@ -34,12 +34,12 @@ func (h *Handler) InitRoutes() *gin.Engine {
 		auth.POST("/sign-up", h.signUp)
 		auth.POST("/sign-in", h.signIn)
 	}
-	profile := router.Group("/profile", h.userIdentity)
+	profile := router.Group("/profile/:id", h.userIdentity)
 	{
 		profile.GET("/")
 		favorites := profile.Group("/favorites")
 		{
-			favorites.GET("/:id", h.GetAllFavorites)
+			favorites.GET("/", h.GetAllFavorites)
 		}
 	}
 	api := router.Group("/api", h.userIdentity)

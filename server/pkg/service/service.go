@@ -8,7 +8,7 @@ import (
 type Authorization interface {
 	CreateUser(user models.User) (int, error)
 	GenerateToken(login, password string) (string, error)
-	ParseToken(token string) (int, error)
+	ParseToken(token string) (models.User, error)
 }
 
 type IFilmsActions interface {

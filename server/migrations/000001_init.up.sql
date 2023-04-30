@@ -7,7 +7,7 @@ CREATE TABLE users
     lastname      varchar(255),
     email         varchar(255) not null unique,
     birthday      text,
-    image         varchar(255)
+    image         varchar(255) not null
 );
 
 CREATE TABLE films
