@@ -174,13 +174,13 @@ const RegisterPage: FC<IRegisterPageProps> = ({
             body:JSON.stringify(data)
         }
         fetch('http://localhost:8080/auth/sign-up',requestRegister).then(response=>response.json())
-        const requestAuth={
+        /*const requestAuth={
             method:'POST',
             headers:{'Content-Type': 'application/json'},
             body:JSON.stringify(data)
         }
         fetch('http://localhost:8080/auth/sign-in',requestAuth).then(response=>response.json())
-        setShowModal(false)
+        setShowModal(false)*/
     }
 
     return (
@@ -199,7 +199,7 @@ const RegisterPage: FC<IRegisterPageProps> = ({
                             <ColorInput {...register('password')} type={InputType.Password} label={'Пароль'}
                                         id={'passwordReg'}/>
 
-                            <ColorInput {...register('dataAgree')} type={InputType.Checkbox}
+                            <ColorInput {...register('agree')} type={InputType.Checkbox}
                                         label={'Согласие на обработку данных'} id={'agree'}/>
 
                             <Button>

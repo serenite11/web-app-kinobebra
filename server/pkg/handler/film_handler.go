@@ -60,5 +60,4 @@ func (h *Handler) UpdateFilm(c *gin.Context) {
 
 }
 func (h *Handler) DeleteFilm(c *gin.Context) {
-
 }
