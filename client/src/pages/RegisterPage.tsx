@@ -4,7 +4,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import ColorInput, {InputType} from "../components/Input";
 import Button from "../components/Button";
 import {useForm} from "react-hook-form";
-
+import {registration} from "../http/userApi";
 const PageTitle = styled.div`
   margin-bottom: 10px;
   font-size: 32px;
@@ -31,15 +31,15 @@ const LoginWrapper = styled.div`
 `
 
 interface ModalProps {
-    show: boolean;
+  show: boolean;
 }
 
 interface IRegisterPageProps {
-    registerModalContentRef: React.RefObject<HTMLDivElement>
-    registerButtonRef: React.RefObject<HTMLDivElement>
-    handleRegisterClose: () => void;
-    showModal: boolean;
-    setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+  registerModalContentRef: React.RefObject<HTMLDivElement>
+  registerButtonRef: React.RefObject<HTMLDivElement>
+  handleRegisterClose: () => void;
+  showModal: boolean;
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 
 
 }
@@ -129,88 +129,83 @@ const ButtonStyled = styled.button`
 `
 
 const RegisterPage: FC<IRegisterPageProps> = ({
-                                                  handleRegisterClose,
-                                                  registerModalContentRef,
-                                                  showModal,
-                                                  setShowModal,
-                                                  registerButtonRef
+                                                handleRegisterClose,
+                                                registerModalContentRef,
+                                                showModal,
+                                                setShowModal,
+                                                registerButtonRef
                                               }) => {
-    const handleCloseModal = (event: MouseEvent) => {
-        if (registerModalContentRef.current &&
-            !registerModalContentRef.current.contains(event.target as Node) &&
-            registerButtonRef.current &&
-            !registerButtonRef.current.contains(event.target as Node)) {
-            setShowModal(false);
-        }
-    };
-
-    useEffect(() => {
-        if (showModal){
-            document.body.style.overflow = "hidden";
-            if (window.innerWidth > 800) {
-                document.body.style.paddingRight = `16px`;
-            }
-        }
-        document.addEventListener('click', handleCloseModal);
-        return () => {
-            document.removeEventListener('click', handleCloseModal);
-            document.body.style.overflow = "";
-            document.body.style.paddingRight = "";
-        };
-    }, [showModal]);
-
-    const {
-        register,
-        formState: {
-            errors
-        },
-        handleSubmit
-    } = useForm()
-
-    const onSubmit = (data: object) => {
-        const requestRegister={
-            method:'POST',
-            headers:{'Content-Type': 'application/json'},
-            body:JSON.stringify(data)
-        }
-        fetch('http://localhost:8080/auth/sign-up',requestRegister).then(response=>response.json())
-        /*const requestAuth={
-            method:'POST',
-            headers:{'Content-Type': 'application/json'},
-            body:JSON.stringify(data)
-        }
-        fetch('http://localhost:8080/auth/sign-in',requestAuth).then(response=>response.json())
-        setShowModal(false)*/
+  const handleCloseModal = (event: MouseEvent) => {
+    if (registerModalContentRef.current &&
+      !registerModalContentRef.current.contains(event.target as Node) &&
+      registerButtonRef.current &&
+      !registerButtonRef.current.contains(event.target as Node)) {
+      setShowModal(false);
     }
+  };
 
-    return (
-        <>
-            <Modal show={showModal}>
-                <ModalContent ref={registerModalContentRef}>
-                    <LoginWrapper>
-                        <CloseIcon className={'closeModalIcon'} onClick={handleRegisterClose}/>
-                        <PageTitle>Регистрация</PageTitle>
-                        <form onSubmit={handleSubmit(onSubmit)}>
-                            <ColorInput {...register('name')} type={InputType.Text} label={'Ваше имя'} id={'name'}/>
-                            <ColorInput {...register('login')} type={InputType.Text} label={'Логин'} id={'login'}/>
-                            <ColorInput {...register('email')} type={InputType.Email} label={'Почта'} id={'emailReg'}/>
-                            <ColorInput {...register('date')} type={InputType.Date} label={'Дата рождения'} id={'dateOfBirth'}/>
-                            <ColorInput {...register('avatar')} type={InputType.File} label={'Фото профиля'} id={'avatarUrl'}/>
-                            <ColorInput {...register('password')} type={InputType.Password} label={'Пароль'}
-                                        id={'passwordReg'}/>
+  useEffect(() => {
+    if (showModal) {
+      document.body.style.overflow = "hidden";
+      if (window.innerWidth > 800) {
+        document.body.style.paddingRight = `16px`;
+      }
+    }
+    document.addEventListener('click', handleCloseModal);
+    return () => {
+      document.removeEventListener('click', handleCloseModal);
+      document.body.style.overflow = "";
+      document.body.style.paddingRight = "";
+    };
+  }, [showModal]);
 
-                            <ColorInput {...register('agree')} type={InputType.Checkbox}
-                                        label={'Согласие на обработку данных'} id={'agree'}/>
+  const {
+    register,
+    formState: {
+      errors
+    },
+    handleSubmit
+  } = useForm()
 
-                            <Button>
-                                Регистрация
-                            </Button>
-                        </form>
-                    </LoginWrapper>
-                </ModalContent>
-            </Modal>
-        </>
-    );
+  const onSubmit = async (data: object) => {
+    alert(JSON.stringify(data))
+    const requestRegister = {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(data)
+    }
+    let data = await registration(data)
+
+  }
+
+  return (
+    <>
+      <Modal show={showModal}>
+        <ModalContent ref={registerModalContentRef}>
+          <LoginWrapper>
+            <CloseIcon className={'closeModalIcon'} onClick={handleRegisterClose}/>
+            <PageTitle>Регистрация</PageTitle>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <ColorInput {...register('name')} type={InputType.Text} label={'Ваше имя'} id={'name'}/>
+              <ColorInput {...register('login')} type={InputType.Text} label={'Логин'} id={'login'}/>
+              <ColorInput {...register('email')} type={InputType.Email} label={'Почта'} id={'emailReg'}/>
+              <ColorInput {...register('date')} type={InputType.Date} label={'Дата рождения'} id={'dateOfBirth'}/>
+              <ColorInput {...register('avatar')} type={InputType.File} label={'Фото профиля'} id={'avatarUrl'}/>
+              <ColorInput {...register('password')} type={InputType.Password} label={'Пароль'}
+                          id={'passwordReg'}/>
+
+              <ColorInput {...register('agree')} type={InputType.Checkbox}
+                          label={'Согласие на обработку данных'} id={'agree'}/>
+
+              <Button>
+                Регистрация
+              </Button>
+            </form>
+          </LoginWrapper>
+        </ModalContent>
+      </Modal>
+    </>
+  );
 };
 
 export default RegisterPage;
