@@ -19,10 +19,12 @@ func (h *Handler) InitRoutes() *gin.Engine {
 	router.Use(cors.New(cors.Options{
 		Debug: true,
 	}))
-	auth := router.Group("/auth")
+
+	auth := router.Group("/user")
 	{
 		auth.POST("/sign-up", h.signUp)
 		auth.POST("/sign-in", h.signIn)
+		auth.GET("/auth", h.userIdentity)
 	}
 	profile := router.Group("/profile/:id", h.userIdentity)
 	{

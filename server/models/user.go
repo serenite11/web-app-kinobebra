@@ -7,7 +7,7 @@ type User struct {
 	Login       string `json:"login" db:"login"`
 	Password    string `json:"password" db:"password_hash"`
 	Email       string `json:"email" db:"email"`
-	DateOfBirth string `json:"birthday" db:"birthday"`
+	DateOfBirth string `json:"date" db:"birthday"`
 	Image       string `json:"image" db:"image"`
 	Agree       bool   `json:"agree"`
 }

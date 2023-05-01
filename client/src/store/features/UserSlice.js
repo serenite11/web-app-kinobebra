@@ -5,7 +5,7 @@ const initialState = {
         name: 'Ivan',
         email: "ivan@gmail.com"
     },
-    isUserAuth: true
+    isUserAuth: false
 }
 
 const userSlice = createSlice({
@@ -13,7 +13,7 @@ const userSlice = createSlice({
     initialState,
     reducers: {
         setUserData: (state, action) => {
-            state.userInfo = action.payload
+            state.userInfo = action.payload.MapClaims.user
         },
         setUserAuth: (state, action) => {
             state.isUserAuth = action.payload
