@@ -9,7 +9,6 @@ const MyDistrictSlice = createSlice({
   name: 'User',
   initialState,
   reducers : {
-
   }
 })
 
