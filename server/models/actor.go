@@ -1,9 +1,9 @@
 package models
 
 type Actor struct {
-	Id       string `json:"id" bd:"id"`
-	Name     string `json:"name" bd:"name"`
-	LastName string `json:"lastName" bd:"lastname"`
-	Gender   string `json:"gender" bd:"gender"`
-	Image    string `json:"image" bd:"image"`
+	Id       string `json:"id" db:"id"`
+	Name     string `json:"name" db:"name"`
+	LastName string `json:"lastName" db:"lastname"`
+	Gender   string `json:"gender" db:"gender"`
+	Image    string `json:"image" db:"image"`
 }

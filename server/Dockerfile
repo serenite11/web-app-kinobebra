@@ -1,5 +1,12 @@
 FROM golang
 
-WORKDIR /app
+RUN go version
 
-COPY go.mod go.sum ./
+ENV GOPATH=/
+
+COPY ./ ./
+
+RUN go mod download
+RUN go build -o backend ./cmd/main.go
+
+CMD ["./backend"]
