@@ -135,8 +135,7 @@ const LoginPage: FC<ILoginPageProps> = ({
                                             modalContentRef,
                                             showModal,
                                             setShowModal,
-                                            loginButtonRef,
-                                            setUserAuth
+                                            loginButtonRef
                                         }) => {
     const handleCloseModal = (event: MouseEvent) => {
         if (modalContentRef.current &&
@@ -182,7 +181,6 @@ const LoginPage: FC<ILoginPageProps> = ({
     } = useForm()
 
     const onSubmit = (data: object) => {
-        setUserAuth(true)
         setShowModal(false)
     }
 

@@ -1,20 +1,28 @@
 import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
-  name : '',
-  email : '',
-  }
+    userInfo: {
+        name: 'Ivan',
+        email: "ivan@gmail.com"
+    },
+    isUserAuth: true
+}
 
-const MyDistrictSlice = createSlice({
-  name: 'User',
-  initialState,
-  reducers : {
-  }
+const userSlice = createSlice({
+    name: 'user',
+    initialState,
+    reducers: {
+        setUserData: (state, action) => {
+            state.userInfo = action.payload
+        },
+        setUserAuth: (state, action) => {
+            state.isUserAuth = action.payload
+        }
+    }
 })
 
-export const NewDistrictReducer = MyDistrictSlice.reducer
+export const userReducer = userSlice.reducer
 
-export const {addBuiltDistrict, addLayDistrict} = MyDistrictSlice.actions
-// export const selectBuiltDistrictCount = (state) => state.researchedDistricts.builtDistrict.count
-// export const selectLayDistrictCount = (state) => state.researchedDistricts.layDistrict.count
-// export const selectResearchedDistricts = (state) => state.researchedDistricts.districts
+export const {setUserAuth, setUserData} = userSlice.actions
+
+export const selectUserInfo = (state, action) => state.userReducer

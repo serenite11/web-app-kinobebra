@@ -2,11 +2,14 @@ import styled, {css} from "styled-components";
 import {INavBarProps} from "./SideBar";
 import React, {FC} from 'react';
 import {Link} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {setUserAuth} from "../store/features/UserSlice";
 
 interface IAuthorizedUserMenuProps {
     open: boolean;
     setUserAuth: React.Dispatch<React.SetStateAction<boolean>>;
     setAuthorizedUserMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    name : string
 }
 
 export const AuthorizedUserMenuStyle = styled.div<INavBarProps>`
@@ -59,10 +62,11 @@ export const UserAvatar = styled.img`
 `
 
 
-const AuthorizedUserMenu:FC<IAuthorizedUserMenuProps> = ({open,setUserAuth, setAuthorizedUserMenuOpen}) => {
+const AuthorizedUserMenu:FC<IAuthorizedUserMenuProps> = ({open, setAuthorizedUserMenuOpen, name}) => {
 
+    const dispatch = useDispatch()
     const handleLogout = () => {
-        setUserAuth(false)
+        dispatch(setUserAuth(false))
         setAuthorizedUserMenuOpen(false)
     }
 
@@ -71,7 +75,7 @@ const AuthorizedUserMenu:FC<IAuthorizedUserMenuProps> = ({open,setUserAuth, setA
             <UserMainInfo>
                 <div className={'userWelcome'}>
                     <div>Здравстуйте,</div>
-                    <div>userName</div>
+                    <div>{name}</div>
                 </div>
                 <div>
                     <UserAvatar

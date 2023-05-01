@@ -5,6 +5,8 @@ import ColorInput, {InputType} from "../components/Input";
 import Button from "../components/Button";
 import {useForm} from "react-hook-form";
 import {registration} from "../http/userApi";
+import {useDispatch} from "react-redux";
+import {setUserData, setUserAuth} from "../store/features/UserSlice.js"
 const PageTitle = styled.div`
   margin-bottom: 10px;
   font-size: 32px;
@@ -135,6 +137,8 @@ const RegisterPage: FC<IRegisterPageProps> = ({
                                                 setShowModal,
                                                 registerButtonRef
                                               }) => {
+
+  const dispatch = useDispatch()
   const handleCloseModal = (event: MouseEvent) => {
     if (registerModalContentRef.current &&
       !registerModalContentRef.current.contains(event.target as Node) &&
@@ -175,6 +179,8 @@ const RegisterPage: FC<IRegisterPageProps> = ({
       body: JSON.stringify(data)
     }
     let InputData = await registration(data)
+    dispatch(setUserData(InputData))
+    dispatch(setUserAuth(true))
   }
 
   return (

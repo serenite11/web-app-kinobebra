@@ -80,14 +80,14 @@ const SearchBar = ({
                     <UnauthorizedUserMenu open={isUnauthorizedUserMenuOpen} className={'userMenu'}>
                         <div onClick={() => {
                             handleLoginClick()
-                            toggleUnauthorizedUserMenuMode()
+                            toggleUnauthorizedUserMenuMode(isUserAuth)
                         }
                         }
                              ref={loginButtonRef}>Авторизация
                         </div>
                         <div onClick={() => {
                             handleRegisterClick()
-                            toggleUnauthorizedUserMenuMode()
+                            toggleUnauthorizedUserMenuMode(isUserAuth)
                         }
                         }
                              ref={registerButtonRef}>Регистрация

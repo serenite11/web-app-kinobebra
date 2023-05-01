@@ -3,7 +3,7 @@ import React, {createContext, FC, PropsWithChildren, useState} from 'react';
 interface IValue {
     isNavbarMenuOpen: boolean;
     toggleMenuMode: () => void; //Боковая менюшка
-    toggleUnauthorizedUserMenuMode: () => void;
+    toggleUnauthorizedUserMenuMode: (isUserAuth) => void;
     handleLoginClick: () => void;
     handleLoginClose: () => void;
     showModal: boolean;
@@ -36,7 +36,7 @@ export const MenuContext = createContext<IValue>({
     isNavbarMenuOpen: true,
     toggleMenuMode: () => {
     },
-    toggleUnauthorizedUserMenuMode: () => {
+    toggleUnauthorizedUserMenuMode: (isUserAuth) => {
     },
     showModal: false,
     handleLoginClick: () => {
@@ -85,7 +85,7 @@ const NavState: FC<PropsWithChildren> = ({children}) => {
         setShowModal(false);
     };
 
-    function toggleUnauthorizedUserMenuMode() {
+    function toggleUnauthorizedUserMenuMode(isUserAuth) {
         if (isUserAuth)
             setAuthorizedUserMenuOpen(!isAuthorizedUserMenuOpen)
         else

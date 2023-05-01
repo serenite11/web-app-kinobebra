@@ -5,7 +5,7 @@ import axios from "axios";
 export const registration = async (outputData) => {
     const {data} = await axios.post('http://localhost:8080/user/sign-up', outputData)
     localStorage.setItem('token', data.token)
-    return jwtDecode(data)
+    return jwtDecode(data.token)
 }
 
 export const login = async (email, password) => {
