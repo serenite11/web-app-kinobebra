@@ -174,8 +174,7 @@ const RegisterPage: FC<IRegisterPageProps> = ({
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(data)
     }
-    let data = await registration(data)
-
+    let InputData = await registration(data)
   }
 
   return (
