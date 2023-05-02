@@ -16,7 +16,7 @@ export const login = async (outputData) => {
 
 
 export const checkAuth = async () => {
-    const {data} =  await $authHost.get('api/user/auth')
+    const {data} =  await axios.get('http://localhost:8080/auth')
     localStorage.setItem('token', data.token)
     return jwtDecode(data.token)
 }
