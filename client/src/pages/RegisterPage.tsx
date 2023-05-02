@@ -178,7 +178,7 @@ const RegisterPage: FC<IRegisterPageProps> = ({
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(data)
     }
-    let InputData = await registration(data)
+    let InputData = await registration(data).then(setShowModal(false))
     dispatch(setUserData(InputData))
     dispatch(setUserAuth(true))
   }

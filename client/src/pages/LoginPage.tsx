@@ -4,6 +4,8 @@ import CloseIcon from '@mui/icons-material/Close';
 import ColorInput, {InputType} from "../components/Input";
 import Button from "../components/Button";
 import {useForm} from "react-hook-form";
+import {login, registration} from "../http/userApi";
+import {setUserAuth, setUserData} from "../store/features/UserSlice";
 
 interface ModalProps {
     show: boolean;
@@ -180,8 +182,10 @@ const LoginPage: FC<ILoginPageProps> = ({
         handleSubmit
     } = useForm()
 
-    const onSubmit = (data: object) => {
-        setShowModal(false)
+    const onSubmit = async (data: object) => {
+        let InputData = await login(data).then(setShowModal(false))
+        dispatch(setUserData(InputData))
+        dispatch(setUserAuth(true))
     }
 
     return (
@@ -192,7 +196,7 @@ const LoginPage: FC<ILoginPageProps> = ({
                         <CloseIcon className={'closeModalIcon'} onClick={handleLoginClose}/>
                         <PageTitle>Авторизация</PageTitle>
                         <form onSubmit={handleSubmit(onSubmit)}>
-                            <ColorInput {...register('email')} type={InputType.Email} label={'Email'} id={'email'}/>
+                            <ColorInput {...register('login')} type={InputType.Text} label={'Login'} id={'login'}/>
                             <ColorInput {...register('password')} type={InputType.Password} label={'Password'}
                                         id={'password'}/>
                             <div>

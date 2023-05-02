@@ -8,8 +8,8 @@ export const registration = async (outputData) => {
     return jwtDecode(data.token)
 }
 
-export const login = async (email, password) => {
-    const {data} =  await $host.post('user/sign-in', {email, password})
+export const login = async (outputData) => {
+    const {data} = await axios.post('http://localhost:8080/user/sign-in', outputData)
     localStorage.setItem('token', data.token)
     return jwtDecode(data.token)
 }
