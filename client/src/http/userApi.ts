@@ -14,19 +14,15 @@ export const login = async (outputData) => {
     return jwtDecode(data.token)
 }
 
-const $authHost =  axios.create({
-    baseURL: 'http://localhost:8080'
-})
 
-const authInterceptor = config => {
-    config.headers.authorization = `Bearer ${localStorage.getItem('token')}`
-    return config
-}
-
-$authHost.interceptors.request.use(authInterceptor)
 
 export const checkAuth = async () => {
-    const {data} =  await $authHost.get('/auth')
+
+    const {data} =  await axios.get('http://localhost:8080/auth', {
+        headers:{
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+    })
     localStorage.setItem('token', data.token)
     return jwtDecode(data.token)
 }
