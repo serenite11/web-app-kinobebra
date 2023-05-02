@@ -21,18 +21,14 @@ func (h *Handler) AddFilm(c *gin.Context) {
 	})
 }
 
-type getAllFilmsResponse struct {
-	Data []models.Film `json:"data"`
-}
-
 func (h *Handler) GetAllFilms(c *gin.Context) {
 	films, err := h.services.IFilmsActions.GetAllFilms()
 	if err != nil {
 		newErrorResponse(c, http.StatusBadRequest, err.Error())
 		return
 	}
-	c.JSON(http.StatusOK, getAllFilmsResponse{
-		Data: films,
+	c.JSON(http.StatusOK, map[string]interface{}{
+		"films": films,
 	})
 }
 

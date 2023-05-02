@@ -36,7 +36,6 @@ func (s *AuthService) CreateUser(user User) (int, error) {
 
 func (s *AuthService) GenerateToken(login, password string) (string, error) {
 	user, err := s.repo.GetUser(login, generateHashPassword(password))
-	user.Password = password
 	if err != nil {
 		return "", err
 	}
