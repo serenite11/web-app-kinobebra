@@ -6,6 +6,7 @@ import Button from "../components/Button";
 import {useForm} from "react-hook-form";
 import {login, registration} from "../http/userApi";
 import {setUserAuth, setUserData} from "../store/features/UserSlice";
+import {useDispatch} from "react-redux";
 
 interface ModalProps {
     show: boolean;
@@ -139,6 +140,7 @@ const LoginPage: FC<ILoginPageProps> = ({
                                             setShowModal,
                                             loginButtonRef
                                         }) => {
+    const dispatch = useDispatch()
     const handleCloseModal = (event: MouseEvent) => {
         if (modalContentRef.current &&
             !modalContentRef.current.contains(event.target as Node) &&
