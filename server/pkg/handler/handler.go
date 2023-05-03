@@ -17,14 +17,28 @@ func NewHandler(service *service.Service) *Handler {
 func (h *Handler) InitRoutes() *gin.Engine {
 	router := gin.Default()
 	router.Use(cors.New(cors.Options{
-		Debug: true,
+		AllowedOrigins: []string{
+			"http://localhost:5173",
+		},
+		AllowOriginFunc:        nil,
+		AllowOriginRequestFunc: nil,
+		AllowedMethods: []string{
+			"GET", "POST", "PUT", "DELETE",
+		},
+		AllowedHeaders: []string{
+			"*",
+		},
+		ExposedHeaders:      nil,
+		MaxAge:              0,
+		AllowCredentials:    false,
+		AllowPrivateNetwork: false,
+		Debug:               true,
 	}))
-
+	router.GET("/auth", h.userIdentity)
 	auth := router.Group("/user")
 	{
 		auth.POST("/sign-up", h.signUp)
 		auth.POST("/sign-in", h.signIn)
-		auth.GET("/auth", h.userIdentity)
 	}
 	profile := router.Group("/profile/:id", h.userIdentity)
 	{

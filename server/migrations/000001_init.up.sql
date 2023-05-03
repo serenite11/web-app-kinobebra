@@ -54,5 +54,3 @@ CREATE TABLE films_directors
     film_id     int references films (id) on delete cascade,
     director_id int references directors (id) on delete cascade
 );
-
-
