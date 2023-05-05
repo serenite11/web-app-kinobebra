@@ -68,6 +68,7 @@ const AuthorizedUserMenu:FC<IAuthorizedUserMenuProps> = ({open, setAuthorizedUse
     const handleLogout = () => {
         dispatch(setUserAuth(false))
         setAuthorizedUserMenuOpen(false)
+        localStorage.removeItem('token')
     }
 
     return (

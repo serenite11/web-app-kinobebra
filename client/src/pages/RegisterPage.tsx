@@ -195,7 +195,7 @@ const RegisterPage: FC<IRegisterPageProps> = ({
               <ColorInput {...register('login')} type={InputType.Text} label={'Логин'} id={'login'}/>
               <ColorInput {...register('email')} type={InputType.Email} label={'Почта'} id={'emailReg'}/>
               <ColorInput {...register('date')} type={InputType.Date} label={'Дата рождения'} id={'dateOfBirth'}/>
-              <ColorInput {...register('avatar')} type={InputType.File} label={'Фото профиля'} id={'avatarUrl'}/>
+              <ColorInput {...register('image')} type={InputType.File} label={'Фото профиля'} id={'avatarUrl'}/>
               <ColorInput {...register('password')} type={InputType.Password} label={'Пароль'}
                           id={'passwordReg'}/>
 
