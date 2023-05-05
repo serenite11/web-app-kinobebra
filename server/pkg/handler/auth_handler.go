@@ -1,21 +1,39 @@
 package handler
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
+	"github.com/google/uuid"
 	"github.com/serenite11/web-app-kinobebra/server/models"
 	"net/http"
+	"path"
 )
 
 func (h *Handler) signUp(c *gin.Context) {
 	var input models.User
-	if err := c.BindJSON(&input); err != nil {
+	if err := c.Bind(&input); err != nil {
 		newErrorResponse(c, http.StatusBadRequest, err.Error())
 		return
 	}
-	if input.Agree == false {
-		newErrorResponse(c, http.StatusBadGateway, "You must agree to the processing of data")
+	file, err := c.FormFile("image")
+	if err != nil {
+		newErrorResponse(c, http.StatusInternalServerError, err.Error())
 		return
 	}
+	filename := uuid.New().String() + ".jpg"
+	fmt.Println(file.Filename, filename)
+	err = c.SaveUploadedFile(file, path.Join("..", "../static/", filename))
+
+	if err != nil {
+		newErrorResponse(c, http.StatusInternalServerError, err.Error())
+		return
+	}
+	input.Image = *file
+	/*if input.Agree == false {
+		newErrorResponse(c, http.StatusBadGateway, "You must agree to the processing of data")
+		return
+	}*/
+
 	id, err := h.services.Authorization.CreateUser(input)
 	if err != nil {
 		newErrorResponse(c, http.StatusInternalServerError, err.Error())

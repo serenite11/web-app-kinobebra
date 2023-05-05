@@ -17,7 +17,19 @@ CREATE TABLE films
     description text,
     rating      int,
     year_old    int,
-    image       varchar(255)
+    image       varchar(255),
+    news bool      default false
+);
+
+CREATE TABLE series
+(
+    id          serial not null unique,
+    title       varchar(255),
+    description text,
+    rating      float default 0,
+    year_old    int,
+    image       varchar(255),
+    news bool   default false
 );
 
 CREATE TABLE favorites
