@@ -197,7 +197,7 @@ const RegisterPage: FC<IRegisterPageProps> = ({
           <LoginWrapper>
             <CloseIcon className={'closeModalIcon'} onClick={handleRegisterClose}/>
             <PageTitle>Регистрация</PageTitle>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
               <ColorInput {...register('name')} type={InputType.Text} label={'Ваше имя'} id={'name'}/>
               <ColorInput {...register('login')} type={InputType.Text} label={'Логин'} id={'login'}/>
               <ColorInput {...register('email')} type={InputType.Email} label={'Почта'} id={'emailReg'}/>
