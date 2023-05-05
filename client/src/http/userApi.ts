@@ -17,11 +17,10 @@ export const login = async (outputData) => {
 
 
 export const checkAuth = async () => {
-
     const {data} =  await axios.get('http://localhost:8080/auth', {
         headers:{
             Authorization: `Bearer ${localStorage.getItem('token')}`
         }
     })
-    return data.token
+    return data.user
 }

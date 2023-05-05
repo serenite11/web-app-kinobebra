@@ -13,7 +13,7 @@ const userSlice = createSlice({
     initialState,
     reducers: {
         setUserData: (state, action) => {
-            state.userInfo = action.payload.MapClaims.user
+            state.userInfo = action.payload.user
         },
         setUserAuth: (state, action) => {
             state.isUserAuth = action.payload
