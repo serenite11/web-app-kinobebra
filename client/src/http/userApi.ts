@@ -23,6 +23,6 @@ export const checkAuth = async () => {
             Authorization: `Bearer ${localStorage.getItem('token')}`
         }
     })
-    const token = localStorage.getItem('token')
-    return jwtDecode(token)
+    localStorage.setItem('token', data.token)
+    return jwtDecode(data.token)
 }
