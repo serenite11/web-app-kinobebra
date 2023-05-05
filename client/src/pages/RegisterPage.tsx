@@ -172,13 +172,20 @@ const RegisterPage: FC<IRegisterPageProps> = ({
   } = useForm()
 
   const onSubmit = async (data: object) => {
-    alert(JSON.stringify(data))
+    const formData = new FormData()
+    formData.append('name', data.name)
+    formData.append('login', data.login)
+    formData.append('email', data.email)
+    formData.append('date', data.date)
+    formData.append('image', data.image)
+    formData.append('password', data.password)
+
     const requestRegister = {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(data)
     }
-    let InputData = await registration(data).then(setShowModal(false))
+    let InputData = await registration(formData).then(setShowModal(false))
     dispatch(setUserData(InputData))
     dispatch(setUserAuth(true))
   }
