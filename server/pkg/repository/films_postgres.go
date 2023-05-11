@@ -39,10 +39,3 @@ func (r *FilmsPostgres) GetFilmById(filmId int) (models.Film, error) {
 	err := r.db.Get(&row, query, filmId)
 	return row, err
 }
-func (r *FilmsPostgres) UpdateFilm() {
-
-}
-
-func (r *FilmsPostgres) DeleteFilm() {
-
-}

@@ -23,6 +23,7 @@ const (
 	favoritesTable       = "favorites"
 	films_actorsTable    = "films_actors"
 	films_directorsTable = "films_directors"
+	seriesTable          = "series"
 )
 
 func NewPostgresDB(cfg Config) (*sqlx.DB, error) {

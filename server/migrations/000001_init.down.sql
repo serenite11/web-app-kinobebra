@@ -8,6 +8,8 @@ DROP TABLE users;
 
 DROP TABLE films;
 
+DROP TABLE series;
+
 DROP TABLE actors;
 
 DROP TABLE directors;

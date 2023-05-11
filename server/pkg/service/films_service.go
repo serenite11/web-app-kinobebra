@@ -23,9 +23,3 @@ func (s *FilmsActionsService) GetAllFilms() ([]models.Film, error) {
 func (s *FilmsActionsService) GetFilmById(filmId int) (models.Film, error) {
 	return s.repo.GetFilmById(filmId)
 }
-func (s *FilmsActionsService) UpdateFilm() {
-
-}
-func (s *FilmsActionsService) DeleteFilm() {
-
-}

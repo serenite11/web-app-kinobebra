@@ -9,15 +9,21 @@ type Authorization interface {
 	CreateUser(user models.User) (int, error)
 	GenerateToken(login, password string) (string, error)
 	ParseToken(token string) (*tokenClaims, error)
+	UpdateUser(user models.User) (models.User, error)
 }
 
 type IFilmsActions interface {
 	AddFilm(film models.Film) (int, error)
 	GetFilmById(filmId int) (models.Film, error)
 	GetAllFilms() ([]models.Film, error)
-	UpdateFilm()
-	DeleteFilm()
 }
+
+type ISeriesActions interface {
+	AddSerial(serial models.Serial) (int, error)
+	GetSerialById(serialId int) (models.Serial, error)
+	GetAllSeries() ([]models.Serial, error)
+}
+
 type IActorsActions interface {
 	GetActorById(actorId int) (models.Actor, error)
 	GetAllActors() ([]models.Actor, error)
@@ -38,12 +44,14 @@ type Service struct {
 	IActorsActions
 	IDirectorsActions
 	IFavoritesFilms
+	ISeriesActions
 }
 
 func NewService(repos *repository.Repository) *Service {
 	return &Service{
 		Authorization:     NewAuthService(repos.Authorization),
 		IFilmsActions:     NewFilmsActionsService(repos.IFilmsActions),
+		ISeriesActions:    NewSeriesActionsService(repos.ISeriesActions),
 		IActorsActions:    NewActorsActionsService(repos.IActorsActions),
 		IDirectorsActions: NewDirectorsService(repos.IDirectorsActions),
 		IFavoritesFilms:   NewFavoritesService(repos.IFavoritesFilms),
