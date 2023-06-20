@@ -13,7 +13,7 @@ import (
 const (
 	salt       = "qwrqwrewr123"
 	signingKey = "fsdufg1231asdads"
-	tokenTTL   = 168 * time.Hour
+	tokenTTL   = 60 * time.Minute
 )
 
 type AuthService struct {
@@ -26,18 +26,16 @@ func NewAuthService(repo repository.Authorization) *AuthService {
 
 type tokenClaims struct {
 	jwt.MapClaims
-	UserId int    `json:"user_id"`
-	Login  string `json:"login"`
-	Name   string `json:"name"`
-	Email  string `json:"email"`
-	Image  string `json:"image"`
+	User User `json:"user"`
 }
 
 func (s *AuthService) CreateUser(user User) (int, error) {
 	user.Password = generateHashPassword(user.Password)
 	return s.repo.CreateUser(user)
 }
-
+func (s *AuthService) UpdateUser(user User) (User, error) {
+	return s.repo.UpdateUser(user)
+}
 func (s *AuthService) GenerateToken(login, password string) (string, error) {
 	user, err := s.repo.GetUser(login, generateHashPassword(password))
 	if err != nil {
@@ -49,16 +47,12 @@ func (s *AuthService) GenerateToken(login, password string) (string, error) {
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, &tokenClaims{
 		claims,
-		user.Id,
-		user.Login,
-		user.Name,
-		user.Email,
-		user.Image,
+		user,
 	})
 	return token.SignedString([]byte(signingKey))
 }
 
-func (s *AuthService) ParseToken(tokenName string) (int, error) {
+func (s *AuthService) ParseToken(tokenName string) (*tokenClaims, error) {
 	token, err := jwt.ParseWithClaims(tokenName, &tokenClaims{}, func(token *jwt.Token) (interface{}, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, errors.New("invalid signing method")
@@ -66,13 +60,13 @@ func (s *AuthService) ParseToken(tokenName string) (int, error) {
 		return []byte(signingKey), nil
 	})
 	if err != nil {
-		return 0, err
+		return &tokenClaims{}, err
 	}
 	claims, ok := token.Claims.(*tokenClaims)
 	if !ok {
-		return 0, errors.New("token claims is not type *tokenClaims")
+		return claims, errors.New("token claims is not type *tokenClaims")
 	}
-	return claims.UserId, nil
+	return claims, nil
 }
 
 func generateHashPassword(password string) string {

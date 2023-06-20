@@ -30,3 +30,8 @@ func (r *AuthPostgres) GetUser(login, password string) (models.User, error) {
 	err := r.db.Get(&user, query, login, password)
 	return user, err
 }
+
+func (r *AuthPostgres) UpdateUser(user models.User) (models.User, error) {
+	var newUser models.User
+	return newUser, nil
+}

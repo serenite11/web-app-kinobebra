@@ -8,14 +8,18 @@ import (
 type Authorization interface {
 	CreateUser(user models.User) (int, error)
 	GetUser(login, password string) (models.User, error)
+	UpdateUser(user models.User) (models.User, error)
 }
 
 type IFilmsActions interface {
 	AddFilm(film models.Film) (int, error)
 	GetFilmById(filmId int) (models.Film, error)
 	GetAllFilms() ([]models.Film, error)
-	UpdateFilm()
-	DeleteFilm()
+}
+type ISeriesActions interface {
+	AddSerial(serial models.Serial) (int, error)
+	GetSerialById(serialId int) (models.Serial, error)
+	GetAllSeries() ([]models.Serial, error)
 }
 
 type IActorsActions interface {
@@ -38,12 +42,14 @@ type Repository struct {
 	IActorsActions
 	IDirectorsActions
 	IFavoritesFilms
+	ISeriesActions
 }
 
 func NewRepository(db *sqlx.DB) *Repository {
 	return &Repository{
 		Authorization:     NewAuthPostgres(db),
 		IFilmsActions:     NewFilmsPostgres(db),
+		ISeriesActions:    NewSeriesPostgres(db),
 		IActorsActions:    NewActorsPostgres(db),
 		IDirectorsActions: NewDirectorsPostgres(db),
 		IFavoritesFilms:   NewFavoritesPostgres(db),
