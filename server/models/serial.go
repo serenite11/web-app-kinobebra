@@ -7,4 +7,5 @@ type Serial struct {
 	Rating      int    `json:"rating" db:"rating"`
 	Years       string `json:"years" db:"years"`
 	Image       string `json:"image" db:"image"`
+	News        bool   `json:"news" db:"news"`
 }

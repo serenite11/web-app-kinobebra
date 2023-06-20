@@ -16,8 +16,8 @@ func NewSeriesPostgres(db *sqlx.DB) *SeriesPostgres {
 
 func (r *SeriesPostgres) AddSerial(serial models.Serial) (int, error) {
 	var id int
-	query := fmt.Sprintf("INSERT INTO %s (title,description,rating,year_old) values ($1,$2, $3, $4) RETURNING id", seriesTable)
-	row := r.db.QueryRow(query, serial.Title, serial.Description, serial.Rating, serial.Year_Old)
+	query := fmt.Sprintf("INSERT INTO %s (title,description,rating,Years) values ($1,$2, $3, $4) RETURNING id", seriesTable)
+	row := r.db.QueryRow(query, serial.Title, serial.Description, serial.Rating, serial.Years)
 	if err := row.Scan(&id); err != nil {
 		return 0, err
 	}

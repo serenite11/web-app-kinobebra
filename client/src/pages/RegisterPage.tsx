@@ -173,11 +173,12 @@ const RegisterPage: FC<IRegisterPageProps> = ({
 
   const onSubmit = async (data: object) => {
     const formData = new FormData()
+    console.log(data.date)
     formData.append('name', data.name)
     formData.append('login', data.login)
     formData.append('email', data.email)
     formData.append('date', data.date)
-    formData.append('image', data.image)
+    formData.append('image', data.image[0])
     formData.append('password', data.password)
 
     const requestRegister = {
@@ -197,13 +198,13 @@ const RegisterPage: FC<IRegisterPageProps> = ({
           <LoginWrapper>
             <CloseIcon className={'closeModalIcon'} onClick={handleRegisterClose}/>
             <PageTitle>Регистрация</PageTitle>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <ColorInput {...register('name')} type={InputType.Text} label={'Ваше имя'} id={'name'}/>
-              <ColorInput {...register('login')} type={InputType.Text} label={'Логин'} id={'login'}/>
-              <ColorInput {...register('email')} type={InputType.Email} label={'Почта'} id={'emailReg'}/>
-              <ColorInput {...register('date')} type={InputType.Date} label={'Дата рождения'} id={'dateOfBirth'}/>
+            <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
+              <ColorInput {...register('name')} type={InputType.Text} label={'Ваше имя'} id={'name'} value={'oleg'}/>
+              <ColorInput {...register('login')} type={InputType.Text} label={'Логин'} id={'login'} value={'oleg'}/>
+              <ColorInput {...register('email')} type={InputType.Email} label={'Почта'} id={'emailReg'} value={'oleg@mail.ru'}/>
+              <ColorInput {...register('date')} type={InputType.Date} label={'Дата рождения'} id={'dateOfBirth'} value={'2022-02-26'}/>
               <ColorInput {...register('image')} type={InputType.File} label={'Фото профиля'} id={'avatarUrl'}/>
-              <ColorInput {...register('password')} type={InputType.Password} label={'Пароль'}
+              <ColorInput {...register('password')} type={InputType.Password} label={'Пароль'} value={'13232'}
                           id={'passwordReg'}/>
 
               <ColorInput {...register('agree')} type={InputType.Checkbox}

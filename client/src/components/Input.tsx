@@ -13,7 +13,7 @@ interface IInputProps {
     type: InputType;
     label?: string;
     id: string,
-
+    value? : string
 }
 const ColorInput = forwardRef((props: IInputProps, ref: ForwardedRef<HTMLInputElement>) => {
     const [isFocused, setIsFocused] = useState(false);
@@ -35,6 +35,8 @@ const ColorInput = forwardRef((props: IInputProps, ref: ForwardedRef<HTMLInputEl
                 onBlur={handleBlur}
                 {...props}
                 ref={ref}
+                value={props.value || ''}
+                accept={props.type === "file" && 'image/png, image/gif, image/jpeg' || ''}
             />
         </div>
     )

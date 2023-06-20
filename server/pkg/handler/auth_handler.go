@@ -3,8 +3,8 @@ package handler
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"github.com/google/uuid"
 	"github.com/serenite11/web-app-kinobebra/server/models"
+	"log"
 	"net/http"
 	"path"
 )
@@ -12,6 +12,7 @@ import (
 func (h *Handler) signUp(c *gin.Context) {
 	var input models.User
 	if err := c.Bind(&input); err != nil {
+		log.Print(input.Image)
 		newErrorResponse(c, http.StatusBadRequest, err.Error())
 		return
 	}
@@ -20,7 +21,7 @@ func (h *Handler) signUp(c *gin.Context) {
 		newErrorResponse(c, http.StatusInternalServerError, err.Error())
 		return
 	}
-	filename := uuid.New().String() + ".jpg"
+	filename := input.Login + ".jpg"
 	fmt.Println(file.Filename, filename)
 	err = c.SaveUploadedFile(file, path.Join("..", "../static/", filename))
 
@@ -28,7 +29,7 @@ func (h *Handler) signUp(c *gin.Context) {
 		newErrorResponse(c, http.StatusInternalServerError, err.Error())
 		return
 	}
-	input.Image = *file
+	input.Image = file
 	/*if input.Agree == false {
 		newErrorResponse(c, http.StatusBadGateway, "You must agree to the processing of data")
 		return
