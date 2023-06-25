@@ -199,10 +199,17 @@ const RegisterPage: FC<IRegisterPageProps> = ({
             <CloseIcon className={'closeModalIcon'} onClick={handleRegisterClose}/>
             <PageTitle>Регистрация</PageTitle>
             <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
+<<<<<<< HEAD
               <ColorInput {...register('name')} type={InputType.Text} label={'Ваше имя'} id={'name'} value={'oleg'}/>
               <ColorInput {...register('login')} type={InputType.Text} label={'Логин'} id={'login'} value={'oleg'}/>
               <ColorInput {...register('email')} type={InputType.Email} label={'Почта'} id={'emailReg'} value={'oleg@mail.ru'}/>
               <ColorInput {...register('date')} type={InputType.Date} label={'Дата рождения'} id={'dateOfBirth'} value={'2022-02-26'}/>
+=======
+              <ColorInput {...register('name')} type={InputType.Text} label={'Ваше имя'} id={'name'}/>
+              <ColorInput {...register('login')} type={InputType.Text} label={'Логин'} id={'login'}/>
+              <ColorInput {...register('email')} type={InputType.Email} label={'Почта'} id={'emailReg'}/>
+              <ColorInput {...register('date')} type={InputType.Date} label={'Дата рождения'} id={'dateOfBirth'}/>
+>>>>>>> 05e2c20d003271da4276bb2140e4e7c0c2d00730
               <ColorInput {...register('image')} type={InputType.File} label={'Фото профиля'} id={'avatarUrl'}/>
               <ColorInput {...register('password')} type={InputType.Password} label={'Пароль'} value={'13232'}
                           id={'passwordReg'}/>
