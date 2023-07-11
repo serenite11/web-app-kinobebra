@@ -7,7 +7,6 @@ import {setUserAuth} from "../store/features/UserSlice";
 
 interface IAuthorizedUserMenuProps {
     open: boolean;
-    setUserAuth: React.Dispatch<React.SetStateAction<boolean>>;
     setAuthorizedUserMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
     name : string
 }

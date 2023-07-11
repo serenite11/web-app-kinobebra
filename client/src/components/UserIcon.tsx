@@ -1,7 +1,11 @@
-import React, {useContext} from 'react';
+import React, {FC, useContext} from 'react';
 import LoginIcon from '@mui/icons-material/Login';
 import styled from "styled-components";
 import {MenuContext} from "../context/navState";
+
+interface IUserIcon {
+    isAuth : boolean
+}
 
 const UserButton = styled.div`
   position: relative;
@@ -20,7 +24,7 @@ const UserButton = styled.div`
   }
 `
 
-const UserIcon = ({isAuth}) => {
+const UserIcon:FC<IUserIcon> = ({isAuth}) => {
     const {toggleUnauthorizedUserMenuMode} = useContext(MenuContext)
     const clickHandler = () => {
         console.log('click')

@@ -6,7 +6,7 @@ import {ThemeProvider} from "@mui/material";
 import {theme,styledTheme} from "./Theme";
 import {ThemeProvider as StyledProvider, createGlobalStyle} from "styled-components";
 import {Provider} from "react-redux";
-import {store} from "./store.js";
+import {store} from "./store";
 const Global = createGlobalStyle`
 body {
     background-color: ${styledTheme.colors.primary}

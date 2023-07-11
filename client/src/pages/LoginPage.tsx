@@ -5,8 +5,9 @@ import ColorInput, {InputType} from "../components/Input";
 import Button from "../components/Button";
 import {useForm} from "react-hook-form";
 import {login, registration} from "../http/userApi";
-import {setUserAuth, setUserData} from "../store/features/UserSlice";
+import {IUserInfo, setUserAuth, setUserData} from "../store/features/UserSlice";
 import {useDispatch} from "react-redux";
+import {ILoginUser} from "../types/registerUser";
 
 interface ModalProps {
     show: boolean;
@@ -18,8 +19,6 @@ interface ILoginPageProps {
     handleLoginClose: () => void;
     showModal: boolean;
     setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
-    setUserAuth: React.Dispatch<React.SetStateAction<boolean>>;
-
 
 }
 
@@ -182,13 +181,19 @@ const LoginPage: FC<ILoginPageProps> = ({
             errors
         },
         handleSubmit
-    } = useForm()
+    } = useForm<ILoginUser>()
 
-    const onSubmit = async (data: object) => {
-        let InputData = await login(data).then(setShowModal(false))
-        dispatch(setUserData(InputData))
+    const onSubmit = async (data: ILoginUser) => {
+        let InputData: IUserInfo | void = await login(data)
+          .then(() => {
+              setShowModal(false);
+          });
+
+        if (InputData) {
+            dispatch(setUserData(InputData));
+        }
         dispatch(setUserAuth(true))
-    }
+    };
 
     return (
         <>

@@ -3,10 +3,12 @@ import styled, {css} from "styled-components";
 import CloseIcon from '@mui/icons-material/Close';
 import ColorInput, {InputType} from "../components/Input";
 import Button from "../components/Button";
-import {useForm} from "react-hook-form";
+import {useForm, SubmitHandler} from "react-hook-form"
 import {registration} from "../http/userApi";
 import {useDispatch} from "react-redux";
-import {setUserData, setUserAuth} from "../store/features/UserSlice.js"
+import {setUserData, setUserAuth, IUserInfo} from "../store/features/UserSlice"
+import {IRegisterUser} from "../types/registerUser";
+
 const PageTitle = styled.div`
   margin-bottom: 10px;
   font-size: 32px;
@@ -42,8 +44,6 @@ interface IRegisterPageProps {
   handleRegisterClose: () => void;
   showModal: boolean;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
-
-
 }
 
 const Modal = styled.div<ModalProps>`
@@ -169,15 +169,15 @@ const RegisterPage: FC<IRegisterPageProps> = ({
       errors
     },
     handleSubmit
-  } = useForm()
+  } = useForm<IRegisterUser>();
 
-  const onSubmit = async (data: object) => {
+  const onSubmit: SubmitHandler<IRegisterUser> = async (data) => {
     const formData = new FormData()
-    console.log(data.date)
     formData.append('name', data.name)
     formData.append('login', data.login)
     formData.append('email', data.email)
-    formData.append('date', data.date)
+    if (data.date)
+      formData.append('date', data.date)
     formData.append('image', data.image[0])
     formData.append('password', data.password)
 
@@ -186,8 +186,10 @@ const RegisterPage: FC<IRegisterPageProps> = ({
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(data)
     }
-    let InputData = await registration(formData).then(setShowModal(false))
-    dispatch(setUserData(InputData))
+    let InputData: IUserInfo | void = await registration(formData)
+      .then(() => setShowModal(false))
+    if (InputData)
+      dispatch(setUserData(InputData))
     dispatch(setUserAuth(true))
   }
 
@@ -199,24 +201,17 @@ const RegisterPage: FC<IRegisterPageProps> = ({
             <CloseIcon className={'closeModalIcon'} onClick={handleRegisterClose}/>
             <PageTitle>Регистрация</PageTitle>
             <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
-<<<<<<< HEAD
               <ColorInput {...register('name')} type={InputType.Text} label={'Ваше имя'} id={'name'} value={'oleg'}/>
               <ColorInput {...register('login')} type={InputType.Text} label={'Логин'} id={'login'} value={'oleg'}/>
-              <ColorInput {...register('email')} type={InputType.Email} label={'Почта'} id={'emailReg'} value={'oleg@mail.ru'}/>
-              <ColorInput {...register('date')} type={InputType.Date} label={'Дата рождения'} id={'dateOfBirth'} value={'2022-02-26'}/>
-=======
-              <ColorInput {...register('name')} type={InputType.Text} label={'Ваше имя'} id={'name'}/>
-              <ColorInput {...register('login')} type={InputType.Text} label={'Логин'} id={'login'}/>
-              <ColorInput {...register('email')} type={InputType.Email} label={'Почта'} id={'emailReg'}/>
-              <ColorInput {...register('date')} type={InputType.Date} label={'Дата рождения'} id={'dateOfBirth'}/>
->>>>>>> 05e2c20d003271da4276bb2140e4e7c0c2d00730
+              <ColorInput {...register('email')} type={InputType.Email} label={'Почта'} id={'emailReg'}
+                          value={'oleg@mail.ru'}/>
+              <ColorInput {...register('date')} type={InputType.Date} label={'Дата рождения'} id={'dateOfBirth'}
+                          value={'2022-02-26'}/>
               <ColorInput {...register('image')} type={InputType.File} label={'Фото профиля'} id={'avatarUrl'}/>
               <ColorInput {...register('password')} type={InputType.Password} label={'Пароль'} value={'13232'}
                           id={'passwordReg'}/>
-
-              <ColorInput {...register('agree')} type={InputType.Checkbox}
-                          label={'Согласие на обработку данных'} id={'agree'}/>
-
+              <ColorInput {...register('agree')} type={InputType.Checkbox} label={'Согласие на обработку данных'}
+                          id={'agree'}/>
               <Button>
                 Регистрация
               </Button>
